@@ -1347,8 +1347,6 @@ const processingGroups = [
       {name:"咻咻蘑菇汁液",outputQty:5,materials:[{name:"咻咻蘑菇孢子",qty:10},{name:"裝水的瓶子",qty:1}],timeSeconds:1500},
       {name:"淨淨蘑菇孢子",outputQty:15,materials:[{name:"淨淨蘑菇",qty:30},{name:"紙",qty:3}],timeSeconds:1500},
       {name:"淨淨蘑菇汁液",outputQty:5,materials:[{name:"淨淨蘑菇孢子",qty:10},{name:"裝水的瓶子",qty:1}],timeSeconds:3600},
-      {name:"淨淨蘑菇孢子",outputQty:15,materials:[{name:"淨淨蘑菇",qty:30},{name:"紙",qty:3}],timeSeconds:1500},
-      {name:"淨淨蘑菇汁液",outputQty:5,materials:[{name:"淨淨蘑菇孢子",qty:10},{name:"裝水的瓶子",qty:1}],timeSeconds:3600},
       {name:"躲躲花粉末",outputQty:5,materials:[{name:"躲躲花",qty:20}],timeSeconds:900},
       {name:"火苗結晶",outputQty:3,materials:[{name:"夕陽蝴蝶",qty:3},{name:"魔力藥草",qty:10},{name:"黏土",qty:3}],timeSeconds:600},
       {name:"冰霜結晶",outputQty:3,materials:[{name:"白霜金龜子",qty:3},{name:"魔力藥草",qty:10},{name:"黏土",qty:3}],timeSeconds:600},
@@ -1687,6 +1685,8 @@ function renderWorkbenchSidebar() {
 
   groupsToDisplay.forEach(group => {
     const filteredRecipes = group.recipes.filter(r => {
+      // 左側配方清單不顯示的內部配方（仍保留於計算資料中）
+      if (currentWorkbenchFilter === "processing" && r.name === "麵條") return false;
       if (!workbenchSearchTerm) return true;
       const matchName = r.name.toLowerCase().includes(workbenchSearchTerm.toLowerCase());
       const matchMat = r.materials.some(m => m.name.toLowerCase().includes(workbenchSearchTerm.toLowerCase()));
