@@ -1228,6 +1228,37 @@ body {
       <div class="npc-columns-grid" id="npcColumnsContainer"></div>
     </div>
 
+    <!-- 素材準備總覽：緊接 NPC 限購素材，方便快速確認備料 -->
+    <div class="food-step-grid">
+      
+      <!-- 左欄：需要加工的食材 -->
+      <div class="step-box">
+        <div class="step-header">
+          <div class="step-title-group">
+            <h3>需要加工的食材</h3>
+            <div class="step-sub-desc">加工所需的中間品。</div>
+          </div>
+        </div>
+        <div class="processing-food-list" id="step4Grid">
+          <div class="empty-state">無中間加工食材需求</div>
+        </div>
+      </div>
+
+      <!-- 右欄：無販賣需採集素材 -->
+      <div class="step-box">
+        <div class="step-header">
+          <div class="step-title-group">
+            <h3>無販賣需採集素材</h3>
+            <div class="step-sub-desc">自行採集、釣魚或以其他方式取得的素材。</div>
+          </div>
+        </div>
+        <div class="raw-food-tags-grid" id="step5Grid">
+          <div class="empty-state" style="grid-column:1/-1;">尚無採集物料需求</div>
+        </div>
+      </div>
+
+    </div>
+
     <!-- 上方雙欄：選擇料理 (左) ↔ 要製作的料理 (右) -->
     <div class="food-step-grid">
       
@@ -1281,36 +1312,6 @@ body {
 
     </div>
 
-    <!-- 下方雙欄：需要加工的食材 (左) ↔ 無販賣需採集素材 (右) -->
-    <div class="food-step-grid">
-      
-      <!-- 左欄：需要加工的食材 -->
-      <div class="step-box">
-        <div class="step-header">
-          <div class="step-title-group">
-            <h3>需要加工的食材</h3>
-            <div class="step-sub-desc">加工所需的中間品。</div>
-          </div>
-        </div>
-        <div class="processing-food-list" id="step4Grid">
-          <div class="empty-state">無中間加工食材需求</div>
-        </div>
-      </div>
-
-      <!-- 右欄：無販賣需採集素材 -->
-      <div class="step-box">
-        <div class="step-header">
-          <div class="step-title-group">
-            <h3>無販賣需採集素材</h3>
-            <div class="step-sub-desc">自行採集、釣魚或以其他方式取得的素材。</div>
-          </div>
-        </div>
-        <div class="raw-food-tags-grid" id="step5Grid">
-          <div class="empty-state" style="grid-column:1/-1;">尚無採集物料需求</div>
-        </div>
-      </div>
-
-    </div>
 
   </div>
 </div>
