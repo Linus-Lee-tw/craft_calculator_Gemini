@@ -1085,6 +1085,45 @@ body {
 }
 
 
+/* 料理精算台 ICON：icon/物品名稱.webp */
+.food-webp-icon {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  flex: 0 0 38px;
+  border-radius: 8px;
+}
+.food-name-text-with-icon,
+.npc-item-name-with-icon,
+.proc-food-name-with-icon,
+.raw-food-name-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.food-item-card .food-webp-icon {
+  width: 44px;
+  height: 44px;
+  flex-basis: 44px;
+}
+.npc-item-row .food-webp-icon {
+  width: 30px;
+  height: 30px;
+  flex-basis: 30px;
+}
+.proc-food-card .food-webp-icon {
+  width: 40px;
+  height: 40px;
+  flex-basis: 40px;
+}
+.raw-food-pill .food-webp-icon {
+  width: 34px;
+  height: 34px;
+  flex-basis: 34px;
+}
+
+
 /* 加工板 ICON：直接使用相對路徑 icon/檔名.png（與參考版相同） */
 .img-icon {
   width: 30px;
@@ -1273,7 +1312,7 @@ body {
               <button class="btn-acc-toggle" id="btnExpandAll" title="展開所有料理分類">全展開</button>
               <button class="btn-acc-toggle" id="btnCollapseAll" title="收合所有料理分類">全收合</button>
             </div>
-            <span class="step-badge" id="foodTotalCountBadge">26 道</span>
+            <span class="step-badge" id="foodTotalCountBadge">25 道</span>
           </div>
         </div>
 
@@ -1560,10 +1599,7 @@ const foodRecipesData = [
   // 簡便料理
   {name: "旅行者點心", categoryType: "簡便", rarity: "一般", outputQty: 1, timeSeconds: 5, materials: [{name: "雞蛋", qty: 1}, {name: "肉", qty: 1}]},
   {name: "煎蛋", categoryType: "簡便", rarity: "一般", outputQty: 1, timeSeconds: 5, materials: [{name: "雞蛋", qty: 1}, {name: "鹽", qty: 1}]},
-  {name: "水煮蛋", categoryType: "簡便", rarity: "一般", outputQty: 1, timeSeconds: 5, materials: [{name: "雞蛋", qty: 1}, {name: "裝水的瓶子", qty: 1}]},
-
-  // 其他食物
-  {name: "擠著吃的點心", categoryType: "其他食物", rarity: "高級", outputQty: 1, timeSeconds: 5, materials: [{name: "肉", qty: 3}, {name: "藥草", qty: 1}, {name: "裝水的瓶子", qty: 1}]}
+  {name: "水煮蛋", categoryType: "簡便", rarity: "一般", outputQty: 1, timeSeconds: 5, materials: [{name: "雞蛋", qty: 1}, {name: "裝水的瓶子", qty: 1}]}
 ];
 
 // ==================== 4. NPC 每週限購素材庫 ====================
@@ -2183,7 +2219,7 @@ function renderFoodAccordion() {
   const groupKey = isByRarity ? "rarity" : "categoryType";
   const groupOrder = isByRarity 
     ? ["一般", "高級", "稀有", "菁英"]
-    : ["力量特化", "技巧特化", "智力特化", "共享", "簡便", "其他食物"];
+    : ["力量特化", "技巧特化", "智力特化", "共享", "簡便"];
 
   const search = foodSettings.searchTerm.toLowerCase().trim();
 
@@ -2242,7 +2278,10 @@ function renderFoodAccordion() {
       itemCard.innerHTML = `
         <div class="food-item-info">
           <div class="food-name-row">
-            <span class="food-name-text">${esc(recipe.name)}</span>
+            <span class="food-name-text food-name-text-with-icon">
+              <img src="icon/${esc(recipe.name)}.webp" class="food-webp-icon" alt="${esc(recipe.name)}" onerror="this.style.display='none'">
+              ${esc(recipe.name)}
+            </span>
             <span class="rarity-pill ${esc(recipe.rarity)}">${esc(recipe.rarity)}</span>
           </div>
           <div class="food-mat-preview">${matSummary}</div>
@@ -2277,7 +2316,7 @@ btnExpandAll.addEventListener("click", () => {
   const isByRarity = (foodSettings.dim === "rarity");
   const groupOrder = isByRarity 
     ? ["一般", "高級", "稀有", "菁英"]
-    : ["力量特化", "技巧特化", "智力特化", "共享", "簡便", "其他食物"];
+    : ["力量特化", "技巧特化", "智力特化", "共享", "簡便"];
   groupOrder.forEach(g => { accordionOpenState[g] = true; });
   renderFoodAccordion();
 });
@@ -2286,7 +2325,7 @@ btnCollapseAll.addEventListener("click", () => {
   const isByRarity = (foodSettings.dim === "rarity");
   const groupOrder = isByRarity 
     ? ["一般", "高級", "稀有", "菁英"]
-    : ["力量特化", "技巧特化", "智力特化", "共享", "簡便", "其他食物"];
+    : ["力量特化", "技巧特化", "智力特化", "共享", "簡便"];
   groupOrder.forEach(g => { accordionOpenState[g] = false; });
   renderFoodAccordion();
 });
@@ -2565,7 +2604,10 @@ function renderNpcColumns(npcPurchases, accountMult) {
       const hasBought = bought > 0;
 
       row.innerHTML = `
-        <span class="npc-item-name ${hasBought ? "has-demand" : ""}">${esc(it.name)}</span>
+        <span class="npc-item-name npc-item-name-with-icon ${hasBought ? "has-demand" : ""}">
+          <img src="icon/${esc(it.name)}.webp" class="food-webp-icon" alt="${esc(it.name)}" onerror="this.style.display='none'">
+          ${esc(it.name)}
+        </span>
         <span class="npc-item-quota ${isFull ? "full-lock" : (hasBought ? "active-buy" : "")}">${bought} ／ ${maxLimit}${isFull ? " (滿)" : ""}</span>
       `;
       rowsBox.appendChild(row);
@@ -2591,7 +2633,10 @@ function renderStep4Processing(intermediateMap) {
     return `
       <div class="proc-food-card">
         <div class="proc-food-top">
-          <span class="proc-food-name">${esc(item.name)}</span>
+          <span class="proc-food-name proc-food-name-with-icon">
+            <img src="icon/${esc(item.name)}.webp" class="food-webp-icon" alt="${esc(item.name)}" onerror="this.style.display='none'">
+            ${esc(item.name)}
+          </span>
           <span class="proc-food-count-badge">加工 ${item.batches} 次</span>
         </div>
         <div class="proc-food-desc">
@@ -2621,7 +2666,10 @@ function renderStep5Raw(remainingDemand) {
 
   step5Grid.innerHTML = rawEntries.map(it => `
     <div class="raw-food-pill">
-      <span class="raw-food-name">${esc(it.name)}</span>
+      <span class="raw-food-name raw-food-name-with-icon">
+        <img src="icon/${esc(it.name)}.webp" class="food-webp-icon" alt="${esc(it.name)}" onerror="this.style.display='none'">
+        ${esc(it.name)}
+      </span>
       <span class="raw-food-val">× ${it.qty}</span>
     </div>
   `).join("");
