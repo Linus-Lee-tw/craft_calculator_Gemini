@@ -1749,8 +1749,6 @@ function renderWorkbenchSidebar() {
 
   groupsToDisplay.forEach(group => {
     const filteredRecipes = group.recipes.filter(r => {
-      // 左側配方清單不顯示的內部配方（仍保留於計算資料中）
-      if (currentWorkbenchFilter === "processing" && r.name === "麵") return false;
       if (!workbenchSearchTerm) return true;
       const matchName = r.name.toLowerCase().includes(workbenchSearchTerm.toLowerCase());
       const matchMat = r.materials.some(m => m.name.toLowerCase().includes(workbenchSearchTerm.toLowerCase()));
