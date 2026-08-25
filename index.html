@@ -1420,7 +1420,6 @@ const processingGroups = [
       {name:"美乃滋",outputQty:3,materials:[{name:"雞蛋",qty:10},{name:"食用油",qty:2}],timeSeconds:45},
       {name:"麵粉",outputQty:3,materials:[{name:"小麥",qty:15}],timeSeconds:600},
       {name:"起司",outputQty:3,materials:[{name:"牛奶",qty:6},{name:"鹽",qty:1}],timeSeconds:600},
-      {name:"麵條",outputQty:3,materials:[{name:"麵粉",qty:3},{name:"雞蛋",qty:5},{name:"裝水的瓶子",qty:1}],timeSeconds:1500},
       {name:"麵",outputQty:3,materials:[{name:"麵粉",qty:3},{name:"雞蛋",qty:5},{name:"裝水的瓶子",qty:1}],timeSeconds:1500},
       {name:"鮮奶油",outputQty:3,materials:[{name:"牛奶",qty:12},{name:"雞蛋",qty:6},{name:"糖",qty:2}],timeSeconds:1500}
     ]
@@ -1580,7 +1579,7 @@ const foodRecipesData = [
   {name: "炒蔬菜", categoryType: "技巧特化", rarity: "高級", outputQty: 1, timeSeconds: 5, materials: [{name: "馬鈴薯", qty: 8}, {name: "洋蔥", qty: 3}, {name: "高麗菜", qty: 6}, {name: "藥草", qty: 2}]},
   {name: "瑞可塔起司沙拉", categoryType: "技巧特化", rarity: "高級", outputQty: 1, timeSeconds: 5, materials: [{name: "高麗菜", qty: 4}, {name: "起司", qty: 2}, {name: "美乃滋", qty: 1}]},
   {name: "馬鈴薯湯", categoryType: "技巧特化", rarity: "稀有", outputQty: 1, timeSeconds: 5, materials: [{name: "馬鈴薯", qty: 12}, {name: "牛奶", qty: 5}, {name: "藥草", qty: 3}, {name: "胡椒", qty: 6}]},
-  {name: "蒜香橄欖油義大利麵", categoryType: "技巧特化", rarity: "稀有", outputQty: 1, timeSeconds: 5, materials: [{name: "大蒜", qty: 7}, {name: "麵條", qty: 2}, {name: "洋蔥", qty: 2}, {name: "胡椒", qty: 2}]},
+  {name: "蒜香橄欖油義大利麵", categoryType: "技巧特化", rarity: "稀有", outputQty: 1, timeSeconds: 5, materials: [{name: "大蒜", qty: 7}, {name: "麵", qty: 2}, {name: "洋蔥", qty: 2}, {name: "胡椒", qty: 2}]},
 
   // 智力特化
   {name: "蘋果汁", categoryType: "智力特化", rarity: "一般", outputQty: 1, timeSeconds: 5, materials: [{name: "蘋果", qty: 4}, {name: "藥草", qty: 2}, {name: "裝水的瓶子", qty: 1}, {name: "糖", qty: 2}]},
@@ -1751,7 +1750,7 @@ function renderWorkbenchSidebar() {
   groupsToDisplay.forEach(group => {
     const filteredRecipes = group.recipes.filter(r => {
       // 左側配方清單不顯示的內部配方（仍保留於計算資料中）
-      if (currentWorkbenchFilter === "processing" && r.name === "麵條") return false;
+      if (currentWorkbenchFilter === "processing" && r.name === "麵") return false;
       if (!workbenchSearchTerm) return true;
       const matchName = r.name.toLowerCase().includes(workbenchSearchTerm.toLowerCase());
       const matchMat = r.materials.some(m => m.name.toLowerCase().includes(workbenchSearchTerm.toLowerCase()));
@@ -2157,8 +2156,8 @@ function simulateScheduleRawDemand(scheduleList) {
   const rawMap = {};
 
   function resolveSim(matName, requiredQty) {
-    const lookupName = (matName === "麵條") ? "麵條" : matName;
-    const procRecipe = masterRecipeMap.get(lookupName) || (lookupName === "麵條" ? masterRecipeMap.get("麵") : null);
+    const lookupName = matName;
+    const procRecipe = masterRecipeMap.get(lookupName);
 
     if (procRecipe && procRecipe.isProcessing) {
       const batches = Math.ceil(requiredQty / procRecipe.outputQty);
@@ -2500,8 +2499,8 @@ function updateFoodCalculations() {
   const rawRequirementMap = {};
 
   function resolveFoodMaterial(matName, requiredQty) {
-    const lookupName = (matName === "麵條") ? "麵條" : matName;
-    const procRecipe = masterRecipeMap.get(lookupName) || (lookupName === "麵條" ? masterRecipeMap.get("麵") : null);
+    const lookupName = matName;
+    const procRecipe = masterRecipeMap.get(lookupName);
     
     if (procRecipe && procRecipe.isProcessing) {
       const displayName = procRecipe.name;
