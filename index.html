@@ -968,6 +968,27 @@ body {
   color: #475569;
   cursor: not-allowed;
 }
+.btn-food-max {
+  height: 26px;
+  padding: 0 9px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid var(--gold-accent);
+  border-radius: 4px;
+  color: var(--gold-accent);
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.12s ease;
+}
+.btn-food-max:hover:not(:disabled) {
+  background: var(--gold-accent);
+  color: #0b0f19;
+}
+.btn-food-max:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
 .food-qty-input {
   width: 44px;
   height: 26px;
@@ -2280,6 +2301,52 @@ function addFoodToSchedule(name, addQty=1) {
   updateFoodCalculations();
 }
 
+// 將指定料理自動拉到目前 NPC 限購素材可允許的最大製作數量
+function setFoodToMax(name) {
+  const item = foodOrderSchedule.find(x => x.name === name);
+  if (!item) return;
+
+  // 若連 +1 都無法增加，代表目前已到上限
+  if (!checkCanAddFood(name, 1).canAdd) {
+    updateFoodCalculations();
+    return;
+  }
+
+  // 先倍增找出「可行 / 不可行」的區間，再二分搜尋最大可增加量。
+  // 這樣不需要一份一份慢慢累加。
+  let low = 1;
+  let high = 1;
+  const SAFETY_MAX_ADD = 1000000;
+
+  while (high < SAFETY_MAX_ADD && checkCanAddFood(name, high).canAdd) {
+    low = high;
+    high *= 2;
+  }
+
+  // 若料理完全沒有受到 NPC 限購素材約束，避免無限放大。
+  if (high >= SAFETY_MAX_ADD && checkCanAddFood(name, high).canAdd) {
+    alert(`「${name}」目前沒有可判定的 NPC 限購製作上限，請手動輸入數量。`);
+    return;
+  }
+
+  let left = low;
+  let right = high - 1;
+  let bestAdd = low;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (checkCanAddFood(name, mid).canAdd) {
+      bestAdd = mid;
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  item.qty += bestAdd;
+  updateFoodCalculations();
+}
+
 function updateFoodItemQty(name, newQty) {
   const item = foodOrderSchedule.find(x => x.name === name);
   if (!item) return;
@@ -2341,6 +2408,7 @@ function renderFoodSelectedList() {
         <button class="step-btn btn-minus" title="減少 1 份">−</button>
         <input class="food-qty-input" type="number" min="1" step="1" value="${item.qty}" />
         <button class="step-btn btn-plus" title="${canPlus ? "增加 1 份" : "NPC 限購額度已達上限"}" ${!canPlus ? "disabled" : ""}>+</button>
+        <button class="btn-food-max" title="自動增加到目前 NPC 限購素材允許的最大製作數量" ${!canPlus ? "disabled" : ""}>做滿</button>
         <button class="btn-del-food" title="移除此料理">🗑️</button>
       </div>
     `;
@@ -2359,6 +2427,10 @@ function renderFoodSelectedList() {
         item.qty += 1;
         updateFoodCalculations();
       }
+    });
+
+    card.querySelector(".btn-food-max").addEventListener("click", () => {
+      if (canPlus) setFoodToMax(item.name);
     });
 
     const qtyInp = card.querySelector(".food-qty-input");
