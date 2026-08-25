@@ -2438,7 +2438,10 @@ function renderFoodSelectedList() {
     card.innerHTML = `
       <div class="food-selected-left">
         <div class="food-name-row">
-          <span class="food-name-text">${esc(recipe.name)}</span>
+          <span class="food-name-text food-name-text-with-icon">
+            <img src="icon/${esc(recipe.name)}.webp" class="food-webp-icon" alt="${esc(recipe.name)}" onerror="this.style.display='none'">
+            ${esc(recipe.name)}
+          </span>
           <span class="rarity-pill ${esc(recipe.rarity)}">${esc(recipe.rarity)}</span>
         </div>
         <div class="food-mat-preview">${matSummary}</div>
