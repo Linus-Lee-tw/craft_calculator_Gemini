@@ -1586,10 +1586,10 @@ const manufacturingGroups = [
       {name:"高級絕招秘藥",outputQty:3,materials:[{name:"絕招秘藥",qty:9},{name:"淨淨蘑菇汁液",qty:5},{name:"廢墟的魔力石",qty:1},{name:"鍊金術碎屑",qty:20}],timeSeconds:5,useClass:"秘藥系列"},
       {name:"傷害減少秘藥",outputQty:3,materials:[{name:"血紅藥草",qty:10},{name:"咻咻蘑菇汁液",qty:3},{name:"獨角仙",qty:6},{name:"鍊金術碎屑",qty:10}],timeSeconds:5,useClass:"秘藥系列"},
       {name:"高級傷害減少秘藥",outputQty:3,materials:[{name:"傷害減少秘藥",qty:9},{name:"淨淨蘑菇汁液",qty:5},{name:"廢墟的魔力石",qty:1},{name:"鍊金術碎屑",qty:20}],timeSeconds:5,useClass:"秘藥系列"},
-      {name:"移動速度秘藥",outputQty:3,materials:[{name:"藺花",qty:10},{name:"咻咻蘑菇汁液",qty:3},{name:"滴答螢火蟲",qty:6},{name:"鍊金術碎屑",qty:10}],timeSeconds:5,useClass:"秘藥系列"},
+      {name:"移動速度秘藥",outputQty:3,materials:[{name:"箭花",qty:10},{name:"咻咻蘑菇汁液",qty:3},{name:"滴答螢火蟲",qty:6},{name:"鍊金術碎屑",qty:10}],timeSeconds:5,useClass:"秘藥系列"},
       {name:"高級移動速度秘藥",outputQty:3,materials:[{name:"移動速度秘藥",qty:9},{name:"淨淨蘑菇汁液",qty:5},{name:"廢墟的魔力石",qty:1},{name:"鍊金術碎屑",qty:20}],timeSeconds:5,useClass:"秘藥系列"},
       {name:"強擊強化秘藥",outputQty:3,materials:[{name:"血紅藥草",qty:10},{name:"淨淨蘑菇汁液",qty:3},{name:"獨角仙",qty:10},{name:"鍊金術碎屑",qty:10}],timeSeconds:5,useClass:"強化秘藥系列"},
-      {name:"連擊強化秘藥",outputQty:3,materials:[{name:"藺花",qty:10},{name:"淨淨蘑菇汁液",qty:3},{name:"滴答螢火蟲",qty:10},{name:"鍊金術碎屑",qty:10}],timeSeconds:5,useClass:"強化秘藥系列"},
+      {name:"連擊強化秘藥",outputQty:3,materials:[{name:"箭花",qty:10},{name:"淨淨蘑菇汁液",qty:3},{name:"滴答螢火蟲",qty:10},{name:"鍊金術碎屑",qty:10}],timeSeconds:5,useClass:"強化秘藥系列"},
       {name:"廣域強化秘藥",outputQty:3,materials:[{name:"魔力藥草",qty:10},{name:"淨淨蘑菇汁液",qty:3},{name:"白花蝶",qty:10},{name:"鍊金術碎屑",qty:10}],timeSeconds:5,useClass:"強化秘藥系列"}
     ]
   },
@@ -1722,6 +1722,35 @@ const accordionOpenState = {};
 // ==================== 共用輔助函數 ====================
 function esc(s){
   return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))
+}
+function workbenchIconSrc(name){
+  const webpNames = new Set([
+    "抗魔石粉末",
+    "支配的圖鑑(武器)",
+    "支配的圖紙(飾品)",
+    "支配的圖紙(防具)",
+    "雕琢石榴石SS",
+    "雕琢藍尖晶石SS",
+    "雕琢橄欖石SS",
+    "血紅藥草",
+    "分解的裝備零件",
+    "魔法榴彈部件",
+    "毒囊",
+    "凝聚的風",
+    "電氣結晶",
+    "生命的魔力石",
+    "四葉草",
+    "錢幣瓢蟲",
+    "鍊金術碎屑",
+    "廢墟的魔力石",
+    "白花蝶",
+    "獨角仙",
+    "箭花",
+    "滴答螢火蟲",
+    "毅力草"
+  ]);
+  const ext = webpNames.has(name) ? "webp" : "png";
+  return `icon/${esc(name)}.${ext}`;
 }
 function fmtTime(sec){
   sec = Math.round(sec);
@@ -1945,7 +1974,7 @@ function createWorkbenchRow(recipe) {
 
   row.innerHTML = `
     <span class="recipe-row-name" title="${esc(recipe.name)}">
-      <img src="icon/${esc(recipe.name)}.png" class="img-icon" alt="${esc(recipe.name)}" onerror="this.style.display='none'">
+      <img src="${workbenchIconSrc(recipe.name)}" class="img-icon" alt="${esc(recipe.name)}" onerror="this.style.display='none'">
       ${esc(recipe.name)}
     </span>
     <div class="recipe-row-right">
@@ -2041,7 +2070,7 @@ function renderWorkbenchFlowHtml(tree){
       return `
         <div class="flow-card ${depth === 0 ? "root-card" : ""}">
           <div class="flow-card-name">
-            <img src="icon/${esc(node.name)}.png" class="img-icon" alt="${esc(node.name)}" onerror="this.style.display='none'">
+            <img src="${workbenchIconSrc(node.name)}" class="img-icon" alt="${esc(node.name)}" onerror="this.style.display='none'">
             ${esc(node.name)}
           </div>
           <div class="flow-card-stats">
@@ -2131,7 +2160,7 @@ function updateWorkbenchCalculations() {
         ${interEntries.map(([n, req]) => `
           <div class="stat-card intermediate">
             <div class="stat-card-name" title="${esc(n)}">
-              <img src="icon/${esc(n)}.png" class="img-icon" alt="${esc(n)}" onerror="this.style.display='none'">
+              <img src="${workbenchIconSrc(n)}" class="img-icon" alt="${esc(n)}" onerror="this.style.display='none'">
               ${esc(n)}
             </div>
             <div class="stat-card-val">×${grandTotals.produced[n]}</div>
@@ -2150,7 +2179,7 @@ function updateWorkbenchCalculations() {
         ${rawEntries.map(([n, q]) => `
           <div class="stat-card raw">
             <div class="stat-card-name" title="${esc(n)}">
-              <img src="icon/${esc(n)}.png" class="img-icon" alt="${esc(n)}" onerror="this.style.display='none'">
+              <img src="${workbenchIconSrc(n)}" class="img-icon" alt="${esc(n)}" onerror="this.style.display='none'">
               ${esc(n)}
             </div>
             <div class="stat-card-val">×${q}</div>
@@ -2184,7 +2213,7 @@ function renderWorkbenchLanes(categoryTotalTimes = {}) {
     laneEl.innerHTML = `
       <div class="lane-head">
         <div class="lane-name">
-          <img src="icon/${esc(category)}.png" class="img-icon" alt="${esc(category)}" onerror="this.style.display='none'">
+          <img src="${workbenchIconSrc(category)}" class="img-icon" alt="${esc(category)}" onerror="this.style.display='none'">
           <span>${esc(category)}</span>
         </div>
         <span class="lane-time-badge">${fmtTime(laneTotalSeconds)}</span>
@@ -2202,7 +2231,7 @@ function renderWorkbenchLanes(categoryTotalTimes = {}) {
       card.innerHTML = `
         <div class="lane-item-left">
           <div class="lane-item-name" title="${esc(item.name)}">
-            <img src="icon/${esc(item.name)}.png" class="img-icon" alt="${esc(item.name)}" onerror="this.style.display='none'">
+            <img src="${workbenchIconSrc(item.name)}" class="img-icon" alt="${esc(item.name)}" onerror="this.style.display='none'">
             ${esc(item.name)}
           </div>
           <div class="lane-item-sub">每組產出 ×${recipe.outputQty}</div>
