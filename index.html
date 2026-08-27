@@ -1380,7 +1380,10 @@ body {
           <div class="step-title-group">
             <h3>要製作的料理</h3>
           </div>
-          <span class="step-badge" id="foodSelectedTypesBadge">0 種</span>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="step-badge" id="foodSelectedTypesBadge">0 種</span>
+            <button class="btn-acc-toggle" id="clearAllFoodBtn" title="清空全部要製作的料理">全部清空</button>
+          </div>
         </div>
 
         <div class="food-selected-list" id="foodSelectedListContainer">
@@ -2263,6 +2266,7 @@ const foodSelectedTypesBadge = document.getElementById("foodSelectedTypesBadge")
 
 const btnExpandAll = document.getElementById("btnExpandAll");
 const btnCollapseAll = document.getElementById("btnCollapseAll");
+const clearAllFoodBtn = document.getElementById("clearAllFoodBtn");
 
 const npcAccountRuleDesc = document.getElementById("npcAccountRuleDesc");
 const npcColumnsContainer = document.getElementById("npcColumnsContainer");
@@ -2547,6 +2551,12 @@ function removeFoodFromSchedule(name) {
     updateFoodCalculations();
   }
 }
+
+clearAllFoodBtn.addEventListener("click", () => {
+  if (!foodOrderSchedule.length) return;
+  foodOrderSchedule = [];
+  updateFoodCalculations();
+});
 
 // 渲染要製作的料理清單
 function renderFoodSelectedList() {
