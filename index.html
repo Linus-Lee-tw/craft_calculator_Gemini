@@ -460,6 +460,40 @@ body {
 }
 .btn-del-item:hover { color: #ef4444; }
 
+.favorite-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.favorite-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 3px 9px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.12s ease;
+}
+.favorite-btn:hover {
+  border-color: var(--gold-accent);
+  color: var(--gold-accent);
+  background: rgba(245, 158, 11, 0.08);
+}
+.favorite-btn.primary {
+  border-color: var(--gold-accent);
+  color: var(--gold-accent);
+}
+.favorite-btn.has-favorite {
+  background: rgba(245, 158, 11, 0.12);
+}
+.favorite-btn.danger:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
 .total-time-bar {
   display: flex;
   justify-content: space-between;
@@ -1200,7 +1234,12 @@ body {
       <div class="panel-section">
         <div class="panel-section-title">
           <span>多軌平行排程看板 (支援拖拉與點擊 + 新增，自動依配方分類建立群組)</span>
-          <button id="clearAllLanesBtn" style="background:transparent;border:1px solid var(--border);color:var(--text-dim);padding:3px 8px;border-radius:5px;cursor:pointer;font-size:11px;">全部清空</button>
+          <div class="favorite-actions">
+            <button id="saveFavoriteBtn" class="favorite-btn primary" title="儲存目前所有品項與數量">★ 儲存最愛</button>
+            <button id="loadFavoriteBtn" class="favorite-btn" title="載入已儲存的品項與數量">套用最愛</button>
+            <button id="clearFavoriteBtn" class="favorite-btn danger" title="刪除已儲存的我的最愛">刪除最愛</button>
+            <button id="clearAllLanesBtn" class="favorite-btn" title="清空目前排程">全部清空</button>
+          </div>
         </div>
         <div class="pipeline-grid" id="pipelineGrid"></div>
         <div class="total-time-bar">
@@ -1740,6 +1779,102 @@ const interTitleEl = document.getElementById("interTitle");
 const rawTitleEl = document.getElementById("rawTitle");
 const stackedFlowsContainer = document.getElementById("stackedFlowsContainer");
 const clearAllLanesBtn = document.getElementById("clearAllLanesBtn");
+const saveFavoriteBtn = document.getElementById("saveFavoriteBtn");
+const loadFavoriteBtn = document.getElementById("loadFavoriteBtn");
+const clearFavoriteBtn = document.getElementById("clearFavoriteBtn");
+const WORKBENCH_FAVORITE_KEY = "mabi_workbench_favorite_v1";
+
+function getWorkbenchFavorite() {
+  try {
+    const raw = localStorage.getItem(WORKBENCH_FAVORITE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (!Array.isArray(data) || !data.length) return null;
+    return data;
+  } catch (err) {
+    console.warn("讀取我的最愛失敗", err);
+    return null;
+  }
+}
+
+function refreshFavoriteButtons() {
+  const hasFavorite = !!getWorkbenchFavorite();
+  loadFavoriteBtn.disabled = !hasFavorite;
+  clearFavoriteBtn.disabled = !hasFavorite;
+  loadFavoriteBtn.classList.toggle("has-favorite", hasFavorite);
+  loadFavoriteBtn.style.opacity = hasFavorite ? "1" : "0.45";
+  clearFavoriteBtn.style.opacity = hasFavorite ? "1" : "0.45";
+  loadFavoriteBtn.style.cursor = hasFavorite ? "pointer" : "not-allowed";
+  clearFavoriteBtn.style.cursor = hasFavorite ? "pointer" : "not-allowed";
+}
+
+function saveWorkbenchFavorite() {
+  if (!workbenchOrderSchedule.length) {
+    alert("目前排程是空的，沒有可儲存的項目。");
+    return;
+  }
+
+  const existing = getWorkbenchFavorite();
+  if (existing && !confirm("已經有儲存的「我的最愛」，要用目前排程覆蓋嗎？")) return;
+
+  const snapshot = workbenchOrderSchedule.map(item => ({
+    name: item.name,
+    category: item.category,
+    batches: item.batches,
+    qty: item.qty
+  }));
+
+  try {
+    localStorage.setItem(WORKBENCH_FAVORITE_KEY, JSON.stringify(snapshot));
+    refreshFavoriteButtons();
+    alert(`已儲存我的最愛：${snapshot.length} 個品項。`);
+  } catch (err) {
+    console.error(err);
+    alert("儲存失敗：瀏覽器目前無法使用本機儲存功能。");
+  }
+}
+
+function loadWorkbenchFavorite() {
+  const favorite = getWorkbenchFavorite();
+  if (!favorite) {
+    alert("目前沒有已儲存的我的最愛。");
+    refreshFavoriteButtons();
+    return;
+  }
+
+  if (workbenchOrderSchedule.length && !confirm("套用我的最愛會取代目前排程，確定繼續嗎？")) return;
+
+  const restored = [];
+  favorite.forEach(saved => {
+    const recipe = masterRecipeMap.get(saved.name);
+    if (!recipe) return;
+    const batches = Math.max(1, Math.round(Number(saved.batches) || 1));
+    restored.push({
+      name: recipe.name,
+      category: recipe.category,
+      batches,
+      qty: batches * recipe.outputQty
+    });
+  });
+
+  if (!restored.length) {
+    alert("我的最愛中的品項已無法對應目前配方資料。");
+    return;
+  }
+
+  workbenchOrderSchedule = restored;
+  updateWorkbenchCalculations();
+}
+
+function clearWorkbenchFavorite() {
+  if (!getWorkbenchFavorite()) {
+    refreshFavoriteButtons();
+    return;
+  }
+  if (!confirm("確定刪除已儲存的「我的最愛」嗎？")) return;
+  localStorage.removeItem(WORKBENCH_FAVORITE_KEY);
+  refreshFavoriteButtons();
+}
 
 function renderWorkbenchSidebar() {
   sidebarListEl.innerHTML = "";
@@ -2720,6 +2855,11 @@ sidebarSearchEl.addEventListener("input", (e) => {
   workbenchSearchTerm = e.target.value.trim();
   renderWorkbenchSidebar();
 });
+saveFavoriteBtn.addEventListener("click", saveWorkbenchFavorite);
+loadFavoriteBtn.addEventListener("click", loadWorkbenchFavorite);
+clearFavoriteBtn.addEventListener("click", clearWorkbenchFavorite);
+refreshFavoriteButtons();
+
 clearAllLanesBtn.addEventListener("click", () => {
   workbenchOrderSchedule = [];
   updateWorkbenchCalculations();
