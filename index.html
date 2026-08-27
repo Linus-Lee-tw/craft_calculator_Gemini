@@ -1724,33 +1724,7 @@ function esc(s){
   return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))
 }
 function workbenchIconSrc(name){
-  const webpNames = new Set([
-    "抗魔石粉末",
-    "支配的圖鑑(武器)",
-    "支配的圖紙(飾品)",
-    "支配的圖紙(防具)",
-    "雕琢石榴石SS",
-    "雕琢藍尖晶石SS",
-    "雕琢橄欖石SS",
-    "血紅藥草",
-    "分解的裝備零件",
-    "魔法榴彈部件",
-    "毒囊",
-    "凝聚的風",
-    "電氣結晶",
-    "生命的魔力石",
-    "四葉草",
-    "錢幣瓢蟲",
-    "鍊金術碎屑",
-    "廢墟的魔力石",
-    "白花蝶",
-    "獨角仙",
-    "箭花",
-    "滴答螢火蟲",
-    "毅力草"
-  ]);
-  const ext = webpNames.has(name) ? "webp" : "png";
-  return `icon/${esc(name)}.${ext}`;
+  return `icon/${esc(name)}.webp`;
 }
 function fmtTime(sec){
   sec = Math.round(sec);
@@ -1974,7 +1948,7 @@ function createWorkbenchRow(recipe) {
 
   row.innerHTML = `
     <span class="recipe-row-name" title="${esc(recipe.name)}">
-      <img src="${workbenchIconSrc(recipe.name)}" class="img-icon" alt="${esc(recipe.name)}" onerror="this.style.display='none'">
+      <img src="${workbenchIconSrc(recipe.name)}" class="img-icon" alt="${esc(recipe.name)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
       ${esc(recipe.name)}
     </span>
     <div class="recipe-row-right">
@@ -2070,7 +2044,7 @@ function renderWorkbenchFlowHtml(tree){
       return `
         <div class="flow-card ${depth === 0 ? "root-card" : ""}">
           <div class="flow-card-name">
-            <img src="${workbenchIconSrc(node.name)}" class="img-icon" alt="${esc(node.name)}" onerror="this.style.display='none'">
+            <img src="${workbenchIconSrc(node.name)}" class="img-icon" alt="${esc(node.name)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
             ${esc(node.name)}
           </div>
           <div class="flow-card-stats">
@@ -2160,7 +2134,7 @@ function updateWorkbenchCalculations() {
         ${interEntries.map(([n, req]) => `
           <div class="stat-card intermediate">
             <div class="stat-card-name" title="${esc(n)}">
-              <img src="${workbenchIconSrc(n)}" class="img-icon" alt="${esc(n)}" onerror="this.style.display='none'">
+              <img src="${workbenchIconSrc(n)}" class="img-icon" alt="${esc(n)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
               ${esc(n)}
             </div>
             <div class="stat-card-val">×${grandTotals.produced[n]}</div>
@@ -2179,7 +2153,7 @@ function updateWorkbenchCalculations() {
         ${rawEntries.map(([n, q]) => `
           <div class="stat-card raw">
             <div class="stat-card-name" title="${esc(n)}">
-              <img src="${workbenchIconSrc(n)}" class="img-icon" alt="${esc(n)}" onerror="this.style.display='none'">
+              <img src="${workbenchIconSrc(n)}" class="img-icon" alt="${esc(n)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
               ${esc(n)}
             </div>
             <div class="stat-card-val">×${q}</div>
@@ -2213,7 +2187,7 @@ function renderWorkbenchLanes(categoryTotalTimes = {}) {
     laneEl.innerHTML = `
       <div class="lane-head">
         <div class="lane-name">
-          <img src="${workbenchIconSrc(category)}" class="img-icon" alt="${esc(category)}" onerror="this.style.display='none'">
+          <img src="${workbenchIconSrc(category)}" class="img-icon" alt="${esc(category)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
           <span>${esc(category)}</span>
         </div>
         <span class="lane-time-badge">${fmtTime(laneTotalSeconds)}</span>
@@ -2231,7 +2205,7 @@ function renderWorkbenchLanes(categoryTotalTimes = {}) {
       card.innerHTML = `
         <div class="lane-item-left">
           <div class="lane-item-name" title="${esc(item.name)}">
-            <img src="${workbenchIconSrc(item.name)}" class="img-icon" alt="${esc(item.name)}" onerror="this.style.display='none'">
+            <img src="${workbenchIconSrc(item.name)}" class="img-icon" alt="${esc(item.name)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
             ${esc(item.name)}
           </div>
           <div class="lane-item-sub">每組產出 ×${recipe.outputQty}</div>
@@ -2444,7 +2418,7 @@ function renderFoodAccordion() {
         <div class="food-item-info">
           <div class="food-name-row">
             <span class="food-name-text food-name-text-with-icon">
-              <img src="icon/${esc(recipe.name)}.webp" class="food-webp-icon" alt="${esc(recipe.name)}" onerror="this.style.display='none'">
+              <img src="icon/${esc(recipe.name)}.webp" class="food-webp-icon" alt="${esc(recipe.name)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
               ${esc(recipe.name)}
             </span>
             <span class="rarity-pill ${esc(recipe.rarity)}">${esc(recipe.rarity)}</span>
@@ -2613,7 +2587,7 @@ function renderFoodSelectedList() {
       <div class="food-selected-left">
         <div class="food-name-row">
           <span class="food-name-text food-name-text-with-icon">
-            <img src="icon/${esc(recipe.name)}.webp" class="food-webp-icon" alt="${esc(recipe.name)}" onerror="this.style.display='none'">
+            <img src="icon/${esc(recipe.name)}.webp" class="food-webp-icon" alt="${esc(recipe.name)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
             ${esc(recipe.name)}
           </span>
           <span class="rarity-pill ${esc(recipe.rarity)}">${esc(recipe.rarity)}</span>
@@ -2779,7 +2753,7 @@ function renderNpcColumns(npcPurchases, accountMult) {
 
       row.innerHTML = `
         <span class="npc-item-name npc-item-name-with-icon ${hasBought ? "has-demand" : ""}">
-          <img src="icon/${esc(it.name)}.webp" class="food-webp-icon" alt="${esc(it.name)}" onerror="this.style.display='none'">
+          <img src="icon/${esc(it.name)}.webp" class="food-webp-icon" alt="${esc(it.name)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
           ${esc(it.name)}
         </span>
         <span class="npc-item-quota ${isFull ? "full-lock" : (hasBought ? "active-buy" : "")}">${bought} ／ ${maxLimit}${isFull ? " (滿)" : ""}</span>
@@ -2808,7 +2782,7 @@ function renderStep4Processing(intermediateMap) {
       <div class="proc-food-card">
         <div class="proc-food-top">
           <span class="proc-food-name proc-food-name-with-icon">
-            <img src="icon/${esc(item.name)}.webp" class="food-webp-icon" alt="${esc(item.name)}" onerror="this.style.display='none'">
+            <img src="icon/${esc(item.name)}.webp" class="food-webp-icon" alt="${esc(item.name)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
             ${esc(item.name)}
           </span>
           <span class="proc-food-count-badge">加工 ${item.batches} 次</span>
@@ -2841,7 +2815,7 @@ function renderStep5Raw(remainingDemand) {
   step5Grid.innerHTML = rawEntries.map(it => `
     <div class="raw-food-pill">
       <span class="raw-food-name raw-food-name-with-icon">
-        <img src="icon/${esc(it.name)}.webp" class="food-webp-icon" alt="${esc(it.name)}" onerror="this.style.display='none'">
+        <img src="icon/${esc(it.name)}.webp" class="food-webp-icon" alt="${esc(it.name)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">
         ${esc(it.name)}
       </span>
       <span class="raw-food-val">× ${it.qty}</span>
