@@ -1178,6 +1178,216 @@ body {
   flex-basis: 28px;
 }
 
+
+/* ---------------- 3. 修練與以物易物 ---------------- */
+.mode-tab-btn.active.training-mode {
+  background: #059669;
+  color: #fff;
+}
+.training-workspace {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+}
+.training-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.training-hero h2 { margin:0; font-size:22px; }
+.training-hero p { margin:6px 0 0; color:var(--text-muted); font-size:13px; }
+.training-global-control {
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  background:var(--surface-1); border:1px solid var(--border); border-radius:10px; padding:10px 12px;
+}
+.training-global-control label { font-size:12px; font-weight:700; color:var(--text-muted); }
+.training-global-input {
+  width:78px; height:34px; background:var(--bg); color:#fff; border:1px solid var(--border-light);
+  border-radius:6px; text-align:center; font-family:var(--font-mono); font-weight:800;
+}
+.training-action-btn {
+  height:34px; padding:0 12px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:800;
+  border:1px solid #10b981; background:rgba(16,185,129,.12); color:#34d399;
+}
+.training-action-btn:hover { background:#059669; color:#fff; }
+.training-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px; }
+.training-group-card { background:var(--surface-1); border:1px solid var(--border); border-radius:12px; padding:16px; }
+.training-group-title { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.training-group-title h3 { margin:0; font-size:16px; }
+.training-group-title span { font-size:11px; color:var(--text-dim); }
+.training-recipe-row {
+  display:grid; grid-template-columns:110px minmax(150px,1fr) minmax(190px,1.2fr) 92px; gap:10px; align-items:center;
+  padding:10px 0; border-top:1px solid rgba(255,255,255,.05);
+}
+.training-recipe-row:first-of-type { border-top:none; }
+.training-skill { font-size:12px; font-weight:800; color:#7dd3fc; }
+.training-item { font-size:13px; font-weight:800; color:#fff; }
+.training-mats { font-size:12px; color:var(--text-muted); font-family:var(--font-mono); }
+.training-count-input {
+  width:78px; height:30px; background:var(--bg); color:#fff; border:1px solid var(--border); border-radius:6px;
+  text-align:center; font-family:var(--font-mono); font-weight:800;
+}
+.training-summary-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+.training-material-card {
+  background:var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:12px 14px;
+  border-left:3px solid #10b981;
+}
+.training-material-name { font-size:12px; color:var(--text-muted); }
+.training-material-qty { font-size:22px; font-family:var(--font-mono); font-weight:900; margin-top:3px; }
+.training-material-sub { font-size:10px; color:var(--text-dim); margin-top:4px; }
+.training-processing-note {
+  margin-top:12px; padding:10px 12px; background:rgba(56,189,248,.06); border:1px solid rgba(56,189,248,.22);
+  border-radius:8px; font-size:12px; color:var(--text-muted);
+}
+.barter-board {
+  display:grid; grid-template-columns:minmax(0,1.4fr) minmax(320px,.95fr); gap:16px; align-items:start;
+}
+.barter-list-panel, .barter-summary-panel {
+  background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:16px;
+}
+.barter-list-toolbar {
+  display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap;
+}
+.barter-toolbar-note { font-size:12px; color:var(--text-muted); }
+.barter-toolbar-actions { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.barter-search-input {
+  width:240px; max-width:100%; height:34px; background:var(--bg); color:#fff; border:1px solid var(--border-light);
+  border-radius:8px; padding:0 12px; font-size:12px;
+}
+.barter-npc-list { display:flex; flex-direction:column; gap:14px; }
+.barter-npc-group {
+  background:rgba(15,23,42,.55); border:1px solid var(--border); border-radius:14px; overflow:hidden;
+}
+.barter-npc-header {
+  display:flex; align-items:center; gap:10px; padding:10px 14px; background:rgba(249,115,22,.10); border-bottom:1px solid rgba(249,115,22,.35);
+}
+.barter-npc-avatar {
+  width:34px; height:34px; border-radius:999px; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,#f59e0b,#fb7185); color:#fff; font-weight:900; font-size:14px; box-shadow:0 0 0 2px rgba(255,255,255,.08) inset;
+}
+.barter-npc-name { font-size:16px; font-weight:900; color:#fff; }
+.barter-npc-sub { font-size:11px; color:#fdba74; margin-top:1px; }
+.barter-item-list { padding:12px; display:flex; flex-direction:column; gap:10px; }
+.barter-item-card {
+  display:grid; grid-template-columns:26px 66px minmax(0,1fr); gap:12px; align-items:flex-start;
+  background:#1b2a42; border:1px solid rgba(148,163,184,.20); border-radius:14px; padding:12px; cursor:pointer; transition:all .15s ease;
+}
+.barter-item-card:hover { border-color:rgba(125,211,252,.35); transform:translateY(-1px); }
+.barter-item-card.selected { border-color:#38bdf8; background:rgba(37,99,235,.18); box-shadow:0 0 0 1px rgba(56,189,248,.18) inset; }
+.barter-check {
+  width:22px; height:22px; margin-top:2px; border-radius:7px; border:1px solid var(--border-light); background:var(--bg);
+  display:flex; align-items:center; justify-content:center; color:transparent; font-size:13px; font-weight:900; flex:0 0 22px;
+}
+.barter-item-card.selected .barter-check { background:#059669; border-color:#10b981; color:#fff; }
+.barter-reward-icons { display:flex; flex-wrap:wrap; gap:6px; }
+.barter-icon-wrap {
+  width:48px; height:48px; border-radius:12px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.barter-icon-wrap img { width:38px; height:38px; object-fit:contain; }
+.barter-item-main { min-width:0; }
+.barter-item-title-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.barter-item-title { font-size:15px; font-weight:900; color:#fff; }
+.barter-limit-badge, .barter-times-badge {
+  display:inline-flex; align-items:center; justify-content:center; height:22px; padding:0 8px; border-radius:999px; font-size:11px; font-weight:800;
+}
+.barter-limit-badge { background:#84cc16; color:#1f2937; }
+.barter-times-badge { background:rgba(59,130,246,.22); color:#93c5fd; border:1px solid rgba(59,130,246,.35); }
+.barter-material-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.barter-material-chip {
+  display:inline-flex; align-items:center; gap:6px; padding:5px 8px; border-radius:999px; background:rgba(15,23,42,.95);
+  border:1px solid rgba(148,163,184,.20); font-size:12px; color:#cbd5e1;
+}
+.barter-material-chip img, .barter-summary-chip img, .barter-total-card img {
+  width:18px; height:18px; object-fit:contain; border-radius:4px; background:rgba(255,255,255,.05);
+}
+.barter-item-note { margin-top:8px; font-size:11px; color:var(--text-dim); }
+.barter-summary-top { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:12px; }
+.barter-summary-top h3 { margin:0; font-size:18px; }
+.barter-summary-top p { margin:4px 0 0; font-size:12px; color:var(--text-muted); }
+.barter-selected-list {
+  display:flex; flex-direction:column; gap:8px; margin-bottom:14px; max-height:320px; overflow:auto; padding-right:4px;
+}
+.barter-summary-chip {
+  display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:12px; background:var(--surface-1); border:1px solid var(--border);
+}
+.barter-summary-chip-main { min-width:0; }
+.barter-summary-chip-title { font-size:13px; font-weight:800; color:#fff; }
+.barter-summary-chip-meta { font-size:11px; color:var(--text-dim); margin-top:2px; }
+.barter-total-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.barter-total-card {
+  display:flex; align-items:center; gap:10px; background:rgba(56,189,248,.08); border:1px solid rgba(56,189,248,.20); border-radius:12px; padding:12px;
+}
+.barter-total-card-main { min-width:0; }
+.barter-total-name { font-size:13px; color:#e2e8f0; font-weight:800; }
+.barter-total-qty { font-size:20px; font-family:var(--font-mono); font-weight:900; color:#fff; margin-top:1px; }
+.barter-total-sub { font-size:10px; color:var(--text-dim); margin-top:2px; }
+.barter-empty {
+  border:1px dashed rgba(148,163,184,.30); border-radius:12px; padding:18px; text-align:center; color:var(--text-muted); font-size:12px; background:rgba(15,23,42,.35);
+}
+.barter-source-note { margin-top:12px; font-size:11px; color:var(--text-dim); line-height:1.6; }
+
+.barter-area-group {
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  background:rgba(15,23,42,.35);
+}
+.barter-area-group + .barter-area-group { margin-top:14px; }
+.barter-area-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:12px 14px;
+  background:rgba(56,189,248,.08);
+  border-bottom:1px solid rgba(56,189,248,.20);
+}
+.barter-area-title {
+  font-size:17px;
+  font-weight:900;
+  color:#fff;
+}
+.barter-area-count {
+  font-size:11px;
+  font-weight:800;
+  color:#7dd3fc;
+  background:rgba(56,189,248,.10);
+  border:1px solid rgba(56,189,248,.20);
+  border-radius:999px;
+  padding:3px 8px;
+}
+.barter-area-body {
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.barter-area-header { cursor:pointer; user-select:none; }
+.barter-area-header:hover { background:rgba(56,189,248,.13); }
+.barter-area-header-left { display:flex; align-items:center; gap:9px; min-width:0; }
+.barter-area-arrow { color:#7dd3fc; font-size:12px; transition:transform .16s ease; }
+.barter-area-group.collapsed .barter-area-arrow { transform:rotate(-90deg); }
+.barter-area-group.collapsed .barter-area-body { display:none; }
+
+
+@media (max-width: 900px) {
+  .training-grid { grid-template-columns:1fr; }
+  .training-summary-grid { grid-template-columns:repeat(2,1fr); }
+  .training-recipe-row { grid-template-columns:90px 1fr; }
+  .training-mats { grid-column:1 / -1; }
+  .training-recipe-row > div:last-child { justify-self:start; }
+  .training-hero { flex-direction:column; }
+  .barter-board { grid-template-columns:1fr; }
+  .barter-total-grid { grid-template-columns:1fr; }
+  .barter-item-card { grid-template-columns:26px 58px minmax(0,1fr); }
+  .barter-search-input { width:100%; }
+  .barter-toolbar-actions { width:100%; }
+}
+
 @media (max-width: 960px) {
   .app-container { grid-template-columns: 1fr; }
   .sidebar { height: auto; position: static; }
@@ -1195,6 +1405,7 @@ body {
     <div class="mode-tabs">
       <button class="mode-tab-btn active" id="tabWorkbenchBtn" data-view="workbench">加工與製作工作台</button>
       <button class="mode-tab-btn food-mode" id="tabFoodBtn" data-view="food">料理與食物精算台</button>
+      <button class="mode-tab-btn training-mode" id="tabTrainingBtn" data-view="training">修練與以物易物</button>
     </div>
   </div>
 
@@ -1394,6 +1605,69 @@ body {
     </div>
 
 
+  </div>
+</div>
+
+
+<!-- ================= 視圖 3：製作修練與以物易物 ================= -->
+<div class="view-view" id="viewTraining">
+  <div class="training-workspace">
+    <div class="training-hero">
+      <div>
+        <h2>製作修練速查</h2>
+        <p>把武器三系、防具三系一起練；配方固定顯示，不用再回頭找筆記。輸入次數後自動算木、鐵、布、皮與基礎採集量。</p>
+      </div>
+      <div class="training-global-control">
+        <label for="trainingAllCount">全部一起做</label>
+        <input id="trainingAllCount" class="training-global-input" type="number" min="0" step="1" value="60">
+        <span style="font-size:12px;color:var(--text-muted);">次／每項</span>
+        <button id="applyTrainingAllBtn" class="training-action-btn">套用六項</button>
+      </div>
+    </div>
+
+    <div class="training-grid" id="trainingRecipeGrid"></div>
+
+    <div class="panel-section">
+      <div class="panel-section-title">
+        <span>修練材料總需求</span>
+        <span style="font-size:11px;color:var(--text-dim);font-weight:600;">依上方六項製作次數即時計算</span>
+      </div>
+      <div class="training-summary-grid" id="trainingSummaryGrid"></div>
+      <div class="training-processing-note" id="trainingProcessingNote"></div>
+    </div>
+
+    <div class="panel-section">
+      <div class="panel-section-title">
+        <span>以物易物清單</span>
+        <span style="font-size:11px;color:var(--text-dim);font-weight:600;">左邊勾選要換的項目，右邊自動統計做到上限時要準備的材料</span>
+      </div>
+      <div class="barter-board">
+        <div class="barter-list-panel">
+          <div class="barter-list-toolbar">
+            <div class="barter-toolbar-note">依 NPC 分組顯示，卡片內同時保留「可換物、需求材料、上限」與圖片。</div>
+            <div class="barter-toolbar-actions">
+              <input id="barterSearchInput" class="barter-search-input" type="text" placeholder="搜尋 NPC／兌換物／材料">
+              <button id="expandAllBarterAreasBtn" class="favorite-btn">全展開</button>
+              <button id="collapseAllBarterAreasBtn" class="favorite-btn">全收合</button>
+              <button id="resetBarterChecklistBtn" class="training-action-btn">全部取消勾選</button>
+            </div>
+          </div>
+          <div class="barter-npc-list" id="barterNpcList"></div>
+        </div>
+
+        <div class="barter-summary-panel">
+          <div class="barter-summary-top">
+            <div>
+              <h3>要準備的材料</h3>
+              <p>以左邊勾選項目「全部做到上限」為前提計算。</p>
+            </div>
+            <span class="step-badge" id="barterSelectedCountBadge">0 項</span>
+          </div>
+          <div class="barter-total-grid" id="barterMaterialSummaryGrid"></div>
+          <div class="barter-source-note">※ 「火焰／閃電／風／酸蝕魔法榴彈」會按 <strong>4 種 × 各 3 次</strong> 合計。<br>※ 右側統計用的是你截圖中的限購資料；若日後遊戲調整數量，可直接改資料列。</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2823,31 +3097,384 @@ function renderStep5Raw(remainingDemand) {
   `).join("");
 }
 
+
+// ==================== 6. 製作修練速查 / 推薦物品交換 ====================
+const trainingRecipes = [
+  { group:"武器三系", skill:"鐵工", item:"短劍／大劍", mats:{"木材":1,"鐵錠":3}, count:60 },
+  { group:"武器三系", skill:"木工", item:"詩人武器", mats:{"木材":3,"鐵錠":1}, count:60 },
+  { group:"武器三系", skill:"魔法工藝", item:"冰法武器", mats:{"木材":2,"鐵錠":2}, count:60 },
+  { group:"防具三系", skill:"鐵甲", item:"褲子", mats:{"布料":2,"鐵錠":2}, count:60 },
+  { group:"防具三系", skill:"皮甲", item:"褲子", mats:{"布料":2,"皮革":2}, count:60 },
+  { group:"防具三系", skill:"布甲", item:"鞋子", mats:{"布料":2,"鐵錠":1}, count:60 }
+];
+
+function renderTrainingRecipes() {
+  const grid = document.getElementById("trainingRecipeGrid");
+  if (!grid) return;
+  const groups = [...new Set(trainingRecipes.map(r => r.group))];
+  grid.innerHTML = groups.map(group => {
+    const rows = trainingRecipes.filter(r => r.group === group);
+    return `
+      <div class="training-group-card">
+        <div class="training-group-title">
+          <h3>${esc(group)}</h3>
+          <span>${rows.length} 條技能</span>
+        </div>
+        ${rows.map(r => `
+          <div class="training-recipe-row">
+            <div class="training-skill">${esc(r.skill)}</div>
+            <div class="training-item">${esc(r.item)}</div>
+            <div class="training-mats">${Object.entries(r.mats).map(([n,q]) => `${esc(n)} ×${q}`).join(" ＋ ")}</div>
+            <div style="display:flex;align-items:center;gap:5px;">
+              <input class="training-count-input" type="number" min="0" step="1" value="${r.count}" data-training-skill="${esc(r.skill)}">
+              <span style="font-size:11px;color:var(--text-dim);">次</span>
+            </div>
+          </div>`).join("")}
+      </div>`;
+  }).join("");
+
+  grid.querySelectorAll('[data-training-skill]').forEach(input => {
+    input.addEventListener('input', () => {
+      const row = trainingRecipes.find(r => r.skill === input.dataset.trainingSkill);
+      if (!row) return;
+      row.count = Math.max(0, Math.floor(Number(input.value) || 0));
+      updateTrainingSummary();
+    });
+  });
+}
+
+function updateTrainingSummary() {
+  const grid = document.getElementById("trainingSummaryGrid");
+  const note = document.getElementById("trainingProcessingNote");
+  if (!grid || !note) return;
+  const totals = {"木材":0,"鐵錠":0,"布料":0,"皮革":0};
+  trainingRecipes.forEach(r => {
+    Object.entries(r.mats).forEach(([name, qty]) => {
+      totals[name] = (totals[name] || 0) + qty * (r.count || 0);
+    });
+  });
+  const baseMap = {
+    "木材": { raw:"原木", rawPerBatch:10, output:3, seconds:45 },
+    "鐵錠": { raw:"鐵礦石", rawPerBatch:10, output:3, seconds:30 },
+    "布料": { raw:"羊毛", rawPerBatch:10, output:3, seconds:45 },
+    "皮革": { raw:"生皮", rawPerBatch:10, output:3, seconds:30 }
+  };
+  grid.innerHTML = Object.entries(totals).map(([name, qty]) => {
+    const info = baseMap[name];
+    const batches = qty > 0 ? Math.ceil(qty / info.output) : 0;
+    const rawQty = batches * info.rawPerBatch;
+    return `
+      <div class="training-material-card">
+        <div class="training-material-name">${esc(name)}</div>
+        <div class="training-material-qty">${qty}</div>
+        <div class="training-material-sub">約加工 ${batches} 次｜${esc(info.raw)} ${rawQty}</div>
+      </div>`;
+  }).join("");
+
+  const lines = Object.entries(totals).map(([name, qty]) => {
+    const info = baseMap[name];
+    const batches = qty > 0 ? Math.ceil(qty / info.output) : 0;
+    const secs = batches * info.seconds * (hasMembership ? 1 : 2);
+    return `${name} ${qty} → ${batches} 次加工 → ${info.raw} ${batches*info.rawPerBatch} → ${fmtTime(secs)}`;
+  });
+  note.innerHTML = `<strong style="color:#7dd3fc;">基礎加工估算：</strong><br>${lines.map(esc).join("<br>")}<br><span style="color:var(--text-dim);">※ 以目前加工配方計算；右上生活會員開關會影響加工時間。</span>`;
+}
+
+
+const barterExchangeData = [
+{ id:"aer_2", npc:"艾爾文", location:"杜加德走廊", rewardTitle:"單寧粉末 ×5", rewardItems:[{name:"單寧粉末",qty:5}], materials:[{name:"生皮",qty:5}], limitLabel:"10次", totalTimes:10 },
+{ id:"aer_3", npc:"艾爾文", location:"杜加德走廊", rewardTitle:"高級原木", rewardItems:[{name:"高級原木",qty:1}], materials:[{name:"高級皮革",qty:1}], limitLabel:"10次", totalTimes:10 },
+{ id:"aer_4", npc:"艾爾文", location:"杜加德走廊", rewardTitle:"高級木材 ×4", rewardItems:[{name:"高級木材",qty:4}], materials:[{name:"炒蔬菜",qty:1}], limitLabel:"2次", totalTimes:2 },
+{ id:"tra_2", npc:"特蕾西", location:"杜加德走廊", rewardTitle:"生皮", rewardItems:[{name:"生皮",qty:1}], materials:[{name:"原木",qty:1}], limitLabel:"10次", totalTimes:10, note:"文件註記：後期較難取得" },
+{ id:"tra_3", npc:"特蕾西", location:"杜加德走廊", rewardTitle:"高級生皮", rewardItems:[{name:"高級生皮",qty:1}], materials:[{name:"原木",qty:10}], limitLabel:"10次", totalTimes:10 },
+{ id:"tra_4", npc:"特蕾西", location:"杜加德走廊", rewardTitle:"樹液 ×4", rewardItems:[{name:"樹液",qty:4}], materials:[{name:"高級原木",qty:1}], limitLabel:"5次", totalTimes:5 },
+{ id:"tra_5", npc:"特蕾西", location:"杜加德走廊", rewardTitle:"特蕾西的原木音樂盒", rewardItems:[{name:"特蕾西的原木音樂盒",qty:1}], materials:[{name:"蒸蛤蜊",qty:2}], limitLabel:"1次", totalTimes:1 },
+{ id:"sim_3", npc:"西蒙", location:"杜巴頓", rewardTitle:"布料+ ×10", rewardItems:[{name:"布料+",qty:10}], materials:[{name:"完美繃帶",qty:100}], limitLabel:"10次", totalTimes:10 },
+{ id:"sim_4", npc:"西蒙", location:"杜巴頓", rewardTitle:"染色劑基底", rewardItems:[{name:"染色劑基底",qty:1}], materials:[{name:"高級絲綢",qty:10}], limitLabel:"1次", totalTimes:1 },
+{ id:"jem_1", npc:"潔米", location:"杜巴頓", rewardTitle:"高級布料+ ×4", rewardItems:[{name:"高級布料+",qty:4}], materials:[{name:"蘋果鮮奶油蛋糕",qty:1}], limitLabel:"1次", totalTimes:1 },
+{ id:"jem_2", npc:"潔米", location:"杜巴頓", rewardTitle:"高級布料 ×4", rewardItems:[{name:"高級布料",qty:4}], materials:[{name:"蘋果舒芙蕾",qty:1}], limitLabel:"2次", totalTimes:2 },
+{ id:"jer_1", npc:"傑羅姆", location:"杜巴頓", rewardTitle:"絲綢 ×4", rewardItems:[{name:"絲綢",qty:4}], materials:[{name:"瑞可塔起司沙拉",qty:1}], limitLabel:"2次", totalTimes:2 },
+{ id:"jer_2", npc:"傑羅姆", location:"杜巴頓", rewardTitle:"高級絲綢 ×4", rewardItems:[{name:"高級絲綢",qty:4}], materials:[{name:"奶油醬牛排",qty:1}], limitLabel:"1次", totalTimes:1 },
+{ id:"wal_1", npc:"瓦爾特", location:"杜巴頓", rewardTitle:"皮革 ×6", rewardItems:[{name:"皮革",qty:6}], materials:[{name:"特蕾西的原木音樂盒",qty:1}], limitLabel:"2次", totalTimes:2 },
+{ id:"wal_2", npc:"瓦爾特", location:"杜巴頓", rewardTitle:"愛心幣", rewardItems:[{name:"愛心幣",qty:1}], materials:[{name:"真愛魚",qty:5}], limitLabel:"2次", totalTimes:2 },
+{ id:"wal_3", npc:"瓦爾特", location:"杜巴頓", rewardTitle:"火焰／閃電／風／酸蝕魔法榴彈", rewardItems:[{name:"火焰魔法榴彈",qty:1},{name:"閃電魔法榴彈",qty:1},{name:"風魔法榴彈",qty:1},{name:"酸蝕魔法榴彈",qty:1}], materials:[{name:"暗影幽靈魚",qty:5}], limitLabel:"各3次", totalTimes:12, note:"4 種榴彈各 3 次" },
+{ id:"cal_1", npc:"卡利克斯", location:"杜巴頓", rewardTitle:"皮革+ ×10", rewardItems:[{name:"皮革+",qty:10}], materials:[{name:"格莉娜的蘋果奶茶",qty:2}], limitLabel:"1次", totalTimes:1 },
+{ id:"cal_2", npc:"卡利克斯", location:"杜巴頓", rewardTitle:"檸檬 ×3", rewardItems:[{name:"檸檬",qty:3}], materials:[{name:"不死粉末",qty:5}], limitLabel:"1次", totalTimes:1 },
+{ id:"cal_3", npc:"卡利克斯", location:"杜巴頓", rewardTitle:"胡椒 ×2", rewardItems:[{name:"胡椒",qty:2}], materials:[{name:"不死粉末",qty:5}], limitLabel:"1次", totalTimes:1 },
+{ id:"gli_2", npc:"格莉娜", location:"杜巴頓", rewardTitle:"格莉娜手工蛋糕", rewardItems:[{name:"格莉娜手工蛋糕",qty:1}], materials:[{name:"牛奶燉豬肉",qty:1}], limitLabel:"1次", totalTimes:1 },
+{ id:"gli_3", npc:"格莉娜", location:"杜巴頓", rewardTitle:"格莉娜的蘋果奶茶", rewardItems:[{name:"格莉娜的蘋果奶茶",qty:1}], materials:[{name:"鮮奶油",qty:4}], limitLabel:"1次", totalTimes:1 },
+{ id:"man_1", npc:"馬努斯", location:"杜巴頓", rewardTitle:"生命的魔力石", rewardItems:[{name:"生命的魔力石",qty:1}], materials:[{name:"寵物飼料",qty:10}], limitLabel:"2次", totalTimes:2 },
+{ id:"lei_1", npc:"蕾拉", location:"杜巴頓", rewardTitle:"紙 ×10", rewardItems:[{name:"紙",qty:10}], materials:[{name:"無主的小說書",qty:1}], limitLabel:"1次", totalTimes:1 },
+{ id:"flo_1", npc:"芙蘿拉", location:"杜巴頓", rewardTitle:"無主的小說書", rewardItems:[{name:"無主的小說書",qty:1}], materials:[{name:"格莉娜手工蛋糕",qty:2}], limitLabel:"1次", totalTimes:1 },
+{ id:"nel_1", npc:"奈麗絲", location:"杜巴頓", rewardTitle:"特殊鋼錠", rewardItems:[{name:"特殊鋼錠",qty:1}], materials:[{name:"合金鋼錠",qty:2}], limitLabel:"4次", totalTimes:4 },
+{ id:"nel_2", npc:"奈麗絲", location:"杜巴頓", rewardTitle:"高級生皮", rewardItems:[{name:"高級生皮",qty:1}], materials:[{name:"銅礦石",qty:1}], limitLabel:"10次", totalTimes:10 },
+{ id:"ste_1", npc:"史帝華", location:"杜巴頓", rewardTitle:"火苗／冰霜／電氣／光輝／封印結晶", rewardItems:[{name:"火苗結晶",qty:1},{name:"冰霜結晶",qty:1},{name:"電氣結晶",qty:1},{name:"光輝結晶",qty:1},{name:"封印結晶",qty:1}], materials:[{name:"鍊金術碎屑",qty:1}], limitLabel:"各5次", totalTimes:25, note:"5 種結晶各 5 次" },
+{ id:"ste_2", npc:"史帝華", location:"杜巴頓", rewardTitle:"未加工黃金原石 ×7", rewardItems:[{name:"未加工黃金原石",qty:7}], materials:[{name:"強化再燃燒催化劑",qty:5}], limitLabel:"1次", totalTimes:1 },
+{ id:"ste_3", npc:"史帝華", location:"杜巴頓", rewardTitle:"未加工黃金原石 ×7", rewardItems:[{name:"未加工黃金原石",qty:7}], materials:[{name:"稀有鍊金術再燃燒催化劑",qty:50}], limitLabel:"1次", totalTimes:1 },
+{ id:"ara_1", npc:"阿蘭雯", location:"杜巴頓", rewardTitle:"絕招秘藥", rewardItems:[{name:"絕招秘藥",qty:1}], materials:[{name:"馬鈴薯沙拉",qty:2}], limitLabel:"1次", totalTimes:1 },
+{ id:"ara_2", npc:"阿蘭雯", location:"杜巴頓", rewardTitle:"精靈的痕跡 ×20", rewardItems:[{name:"精靈的痕跡",qty:20}], materials:[{name:"職業大師勳章",qty:1}], limitLabel:"未標限購", totalTimes:1, note:"文件日限購欄為「-」，右側材料先按 1 份計" },
+// 提爾克那
+  { id:"dea_1", npc:"迪恩", location:"提爾克那", rewardTitle:"高級羊毛 ×4", rewardItems:[{name:"高級羊毛",qty:4}], materials:[{name:"寵物飼料",qty:1}], limitLabel:"10次", totalTimes:10 },
+{ id:"fer_1", npc:"佛格斯", location:"提爾克那", rewardTitle:"鐵礦石", rewardItems:[{name:"鐵礦石",qty:1}], materials:[{name:"分解的裝備零件",qty:1}], limitLabel:"10次", totalTimes:10 },
+{ id:"fer_2", npc:"佛格斯", location:"提爾克那", rewardTitle:"煤炭 ×3", rewardItems:[{name:"煤炭",qty:3}], materials:[{name:"分解的裝備零件",qty:1}], limitLabel:"10次", totalTimes:10 },
+{ id:"fer_3", npc:"佛格斯", location:"提爾克那", rewardTitle:"合金鋼錠", rewardItems:[{name:"合金鋼錠",qty:1}], materials:[{name:"鋼錠",qty:2}], limitLabel:"4次", totalTimes:4 },
+{ id:"fer_4", npc:"佛格斯", location:"提爾克那", rewardTitle:"分解的裝備零件 ×10", rewardItems:[{name:"分解的裝備零件",qty:10}], materials:[{name:"礦石",qty:100}], limitLabel:"1次", totalTimes:1 },
+{ id:"ali_1", npc:"愛麗沙", location:"提爾克那", rewardTitle:"鍊金術碎屑", rewardItems:[{name:"鍊金術碎屑",qty:1}], materials:[{name:"雞蛋",qty:10}], limitLabel:"1次", totalTimes:1 },
+{ id:"ali_2", npc:"愛麗沙", location:"提爾克那", rewardTitle:"鍊金術碎屑", rewardItems:[{name:"鍊金術碎屑",qty:1}], materials:[{name:"薰衣草花",qty:1}], limitLabel:"1次", totalTimes:1 },
+{ id:"ali_3", npc:"愛麗沙", location:"提爾克那", rewardTitle:"麵粉", rewardItems:[{name:"麵粉",qty:1}], materials:[{name:"雞蛋",qty:3}], limitLabel:"1次", totalTimes:1 },
+{ id:"ali_4", npc:"愛麗沙", location:"提爾克那", rewardTitle:"麵粉", rewardItems:[{name:"麵粉",qty:1}], materials:[{name:"薰衣草花",qty:1}], limitLabel:"1次", totalTimes:1 },
+{ id:"ren_1", npc:"雷納德", location:"提爾克那", rewardTitle:"暴擊秘藥", rewardItems:[{name:"暴擊秘藥",qty:1}], materials:[{name:"美乃滋炒肉",qty:2}], limitLabel:"1次", totalTimes:1 },
+{ id:"lis_1", npc:"麗莎", location:"提爾克那", rewardTitle:"高級鍊金術再燃燒催化劑", rewardItems:[{name:"高級鍊金術再燃燒催化劑",qty:1}], materials:[{name:"蘋果汁",qty:1}], limitLabel:"1次", totalTimes:1 },
+{ id:"lis_2", npc:"麗莎", location:"提爾克那", rewardTitle:"高級鍊金術再燃燒催化劑", rewardItems:[{name:"高級鍊金術再燃燒催化劑",qty:1}], materials:[{name:"鍊金術碎屑",qty:3}], limitLabel:"1次", totalTimes:1 },
+{ id:"lis_3", npc:"麗莎", location:"提爾克那", rewardTitle:"稀有鍊金術再燃燒催化劑", rewardItems:[{name:"稀有鍊金術再燃燒催化劑",qty:1}], materials:[{name:"高級鍊金術再燃燒催化劑",qty:15}], limitLabel:"1次", totalTimes:1 },
+{ id:"and_1", npc:"安黛莉", location:"提爾克那", rewardTitle:"聖水 ×10", rewardItems:[{name:"聖水",qty:10}], materials:[{name:"凱琳特製全麥麵包",qty:10}], limitLabel:"1次", totalTimes:1 },
+{ id:"mev_1", npc:"梅文", location:"提爾克那", rewardTitle:"聖水", rewardItems:[{name:"聖水",qty:1}], materials:[{name:"凱琳特製全麥麵包",qty:1}], limitLabel:"1次", totalTimes:1 },
+{ id:"kai_1", npc:"凱琳", location:"提爾克那", rewardTitle:"凱琳特製全麥麵包 ×3", rewardItems:[{name:"凱琳特製全麥麵包",qty:3}], materials:[{name:"牛奶",qty:10}], limitLabel:"1次", totalTimes:1 },
+{ id:"mal_2", npc:"麥爾坎", location:"提爾克那", rewardTitle:"麥爾坎的鬆軟羊毛枕頭", rewardItems:[{name:"麥爾坎的鬆軟羊毛枕頭",qty:1}], materials:[{name:"蜘蛛網",qty:5}], limitLabel:"1次", totalTimes:1 },
+{ id:"mal_3", npc:"麥爾坎", location:"提爾克那", rewardTitle:"空白樂譜", rewardItems:[{name:"空白樂譜",qty:1}], materials:[{name:"羊毛",qty:50}], limitLabel:"1次", totalTimes:1 },
+{ id:"del_1", npc:"迪莉絲", location:"提爾克那", rewardTitle:"四葉草", rewardItems:[{name:"四葉草",qty:1}], materials:[{name:"咻咻蘑菇",qty:3}], limitLabel:"1次", totalTimes:1 },
+{ id:"gil_3", npc:"基利安", location:"庫漢", rewardTitle:"健康飲料", rewardItems:[{name:"健康飲料",qty:1}], materials:[{name:"淨淨蘑菇孢子",qty:5}], limitLabel:"5次", totalTimes:5 },
+{ id:"gil_4", npc:"基利安", location:"庫漢", rewardTitle:"四葉草 ×8", rewardItems:[{name:"四葉草",qty:8}], materials:[{name:"蒜香橄欖油義大利麵",qty:1}], limitLabel:"1次", totalTimes:1 },
+{ id:"con_1", npc:"康納", location:"庫漢", rewardTitle:"四葉草 ×3", rewardItems:[{name:"四葉草",qty:3}], materials:[{name:"健康飲料",qty:1}], limitLabel:"3次", totalTimes:3 },
+{ id:"con_2", npc:"康納", location:"庫漢", rewardTitle:"廢墟的魔力石", rewardItems:[{name:"廢墟的魔力石",qty:1}], materials:[{name:"生命的魔力石",qty:1}], limitLabel:"5次", totalTimes:5 },
+{ id:"con_3", npc:"康納", location:"庫漢", rewardTitle:"峽谷的魔力石", rewardItems:[{name:"峽谷的魔力石",qty:1}], materials:[{name:"生命的魔力石",qty:1}], limitLabel:"10次", totalTimes:10 },
+{ id:"con_4", npc:"康納", location:"庫漢", rewardTitle:"愛心幣", rewardItems:[{name:"愛心幣",qty:1}], materials:[{name:"燈籠鮟鱇",qty:1}], limitLabel:"3次", totalTimes:3 },
+{ id:"kia_1", npc:"凱雅拉", location:"庫漢", rewardTitle:"凝聚的風 ×3", rewardItems:[{name:"凝聚的風",qty:3}], materials:[{name:"高級木材+",qty:10}], limitLabel:"3次", totalTimes:3 },
+{ id:"kia_2", npc:"凱雅拉", location:"庫漢", rewardTitle:"毒囊 ×3", rewardItems:[{name:"毒囊",qty:3}], materials:[{name:"高級木材+",qty:10}], limitLabel:"3次", totalTimes:3 },
+{ id:"kia_3", npc:"凱雅拉", location:"庫漢", rewardTitle:"高級暴擊秘藥", rewardItems:[{name:"高級暴擊秘藥",qty:1}], materials:[{name:"冰草莓飲",qty:2}], limitLabel:"1次", totalTimes:1 },
+{ id:"kia_4", npc:"凱雅拉", location:"庫漢", rewardTitle:"裝水的瓶子 ×50", rewardItems:[{name:"裝水的瓶子",qty:50}], materials:[{name:"聖水",qty:10}], limitLabel:"1次", totalTimes:1 },
+{ id:"arm_1", npc:"阿爾米斯", location:"庫漢", rewardTitle:"銀合金錠", rewardItems:[{name:"銀合金錠",qty:1}], materials:[{name:"特殊鋼錠",qty:2}], limitLabel:"1次", totalTimes:1 },
+{ id:"arm_2", npc:"阿爾米斯", location:"庫漢", rewardTitle:"銅礦石 ×10", rewardItems:[{name:"銅礦石",qty:10}], materials:[{name:"白銅礦石",qty:1}], limitLabel:"1次", totalTimes:1 },
+{ id:"arm_5", npc:"阿爾米斯", location:"庫漢", rewardTitle:"聖水 ×10", rewardItems:[{name:"聖水",qty:10}], materials:[{name:"解除詛咒藥水",qty:100}], limitLabel:"1次", totalTimes:1 },
+// 冰霜峽谷狩獵場
+  { id:"kar_1", npc:"卡琳", location:"冰霜峽谷狩獵場", rewardTitle:"寵物飼料 ×10", rewardItems:[{name:"寵物飼料",qty:10}], materials:[{name:"馬鈴薯湯",qty:3}], limitLabel:"1次", totalTimes:1 },
+// 各地下城 3 區貓商人
+  { id:"cat_1", npc:"貓商人", location:"各個地下城 3 區｜每日補貨", rewardTitle:"新芽蘑菇", rewardItems:[{name:"新芽蘑菇",qty:1}], materials:[{name:"血紅藥草",qty:1}], limitLabel:"3次", totalTimes:3 },
+{ id:"cat_2", npc:"貓商人", location:"各個地下城 3 區｜每日補貨", rewardTitle:"愛心幣", rewardItems:[{name:"愛心幣",qty:1}], materials:[{name:"擠著吃的點心",qty:1}], limitLabel:"3次", totalTimes:3 },
+{ id:"cat_3", npc:"貓商人", location:"各個地下城 3 區｜每日補貨", rewardTitle:"鹽 ×2", rewardItems:[{name:"鹽",qty:2}], materials:[{name:"旅行者點心",qty:100}], limitLabel:"1次", totalTimes:1 },
+{ id:"cat_4", npc:"貓商人", location:"各個地下城 3 區｜每日補貨", rewardTitle:"糖 ×2", rewardItems:[{name:"糖",qty:2}], materials:[{name:"繃帶",qty:100}], limitLabel:"1次", totalTimes:1 },
+{ id:"cat_5", npc:"貓商人", location:"各個地下城 3 區｜每日補貨", rewardTitle:"高麗菜", rewardItems:[{name:"高麗菜",qty:1}], materials:[{name:"恢復藥水",qty:100}], limitLabel:"1次", totalTimes:1 },
+];
+
+const BARTER_TRACK_KEY = "mabiBarterChecklist_v3";
+function getBarterState() {
+  try { return JSON.parse(localStorage.getItem(BARTER_TRACK_KEY) || "{}"); }
+  catch { return {}; }
+}
+function setBarterState(state) {
+  localStorage.setItem(BARTER_TRACK_KEY, JSON.stringify(state));
+}
+function npcAvatarText(npc) {
+  return (npc || "?").replace(/[／/].*/,"").slice(0,1);
+}
+function itemIconTag(name) {
+  return `<img src="${workbenchIconSrc(name)}" alt="${esc(name)}" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src=this.src.replace(/\.webp(?=$|[?#])/,'.png')}else{this.style.display='none'}">`;
+}
+function rewardIconsHtml(entry) {
+  return entry.rewardItems.map(it => `<div class="barter-icon-wrap" title="${esc(it.qty && it.qty > 1 ? `${it.name} ×${it.qty}` : it.name)}">${itemIconTag(it.name)}</div>`).join("");
+}
+function barterEntrySearchText(entry) {
+  return [entry.npc, entry.rewardTitle, ...(entry.rewardItems||[]).map(x=>x.name), ...(entry.materials||[]).map(x=>x.name), entry.note || ""].join(" ").toLowerCase();
+}
+
+const BARTER_AREA_COLLAPSE_KEY = "mabiBarterAreaCollapse_v1";
+function getCollapsedBarterAreas() {
+  try { return new Set(JSON.parse(localStorage.getItem(BARTER_AREA_COLLAPSE_KEY) || "[]")); }
+  catch { return new Set(); }
+}
+function saveCollapsedBarterAreas(set) {
+  localStorage.setItem(BARTER_AREA_COLLAPSE_KEY, JSON.stringify([...set]));
+}
+
+function renderBarterChecklist() {
+  const wrap = document.getElementById("barterNpcList");
+  if (!wrap) return;
+  const q = (document.getElementById("barterSearchInput")?.value || "").trim().toLowerCase();
+  const state = getBarterState();
+  const collapsedAreas = getCollapsedBarterAreas();
+  const filtered = barterExchangeData.filter(entry => !q || barterEntrySearchText(entry).includes(q));
+  if (!filtered.length) {
+    wrap.innerHTML = `<div class="barter-empty">找不到符合條件的以物易物項目。</div>`;
+    renderBarterSummary();
+    return;
+  }
+
+  const areaOrder = ["提爾克那","杜加德走廊","杜巴頓","庫漢"];
+  const areaMap = new Map();
+
+  filtered.forEach(entry => {
+    const area = entry.location || "其他";
+    if (!areaMap.has(area)) areaMap.set(area, new Map());
+    const npcMap = areaMap.get(area);
+    if (!npcMap.has(entry.npc)) npcMap.set(entry.npc, []);
+    npcMap.get(entry.npc).push(entry);
+  });
+
+  const orderedAreas = [
+    ...areaOrder.filter(a => areaMap.has(a)),
+    ...[...areaMap.keys()].filter(a => !areaOrder.includes(a))
+  ];
+
+  wrap.innerHTML = orderedAreas.map(area => {
+    const npcMap = areaMap.get(area);
+    const npcGroups = [...npcMap.entries()];
+    return `
+      <section class="barter-area-group ${collapsedAreas.has(area) ? 'collapsed' : ''}" data-barter-area="${esc(area)}">
+        <div class="barter-area-header" data-area-toggle="${esc(area)}" role="button" tabindex="0" aria-expanded="${collapsedAreas.has(area) ? 'false' : 'true'}">
+          <div class="barter-area-header-left">
+            <span class="barter-area-arrow">▼</span>
+            <div class="barter-area-title">${esc(area)}</div>
+          </div>
+          <div class="barter-area-count">${npcGroups.reduce((n,[,items]) => n + items.length, 0)} 項</div>
+        </div>
+        <div class="barter-area-body">
+          ${npcGroups.map(([npc, items]) => `
+            <section class="barter-npc-group">
+              <div class="barter-npc-header">
+                <div class="barter-npc-avatar">${esc(npcAvatarText(npc))}</div>
+                <div>
+                  <div class="barter-npc-name">${esc(npc)}</div>
+                  <div class="barter-npc-sub">${items.length} 項可換</div>
+                </div>
+              </div>
+              <div class="barter-item-list">
+                ${items.map(entry => {
+                  const selected = !!state[entry.id];
+                  return `
+                  <article class="barter-item-card ${selected ? 'selected' : ''}" data-barter-id="${entry.id}" tabindex="0" role="button" aria-pressed="${selected ? 'true' : 'false'}">
+                    <div class="barter-check">✓</div>
+                    <div class="barter-reward-icons">${rewardIconsHtml(entry)}</div>
+                    <div class="barter-item-main">
+                      <div class="barter-item-title-row">
+                        <div class="barter-item-title">${esc(entry.rewardTitle)}</div>
+                        <span class="barter-limit-badge">${esc(entry.limitLabel)}</span>
+                        <span class="barter-times-badge">材料按 ${entry.totalTimes} 份計</span>
+                      </div>
+                      <div class="barter-material-chips">
+                        ${entry.materials.map(mat => `<span class="barter-material-chip">${itemIconTag(mat.name)} ${esc(mat.name)} ×${mat.qty}</span>`).join('')}
+                      </div>
+                      ${entry.note ? `<div class="barter-item-note">${esc(entry.note)}</div>` : ''}
+                    </div>
+                  </article>`;
+                }).join("")}
+              </div>
+            </section>
+          `).join("")}
+        </div>
+      </section>
+    `;
+  }).join("");
+
+  wrap.querySelectorAll('[data-area-toggle]').forEach(header => {
+    const toggleArea = () => {
+      const area = header.dataset.areaToggle;
+      const set = getCollapsedBarterAreas();
+      if (set.has(area)) set.delete(area); else set.add(area);
+      saveCollapsedBarterAreas(set);
+      renderBarterChecklist();
+    };
+    header.addEventListener('click', toggleArea);
+    header.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleArea(); } });
+  });
+
+  wrap.querySelectorAll('[data-barter-id]').forEach(card => {
+    const toggle = () => {
+      const state = getBarterState();
+      state[card.dataset.barterId] = !state[card.dataset.barterId];
+      setBarterState(state);
+      renderBarterChecklist();
+    };
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  });
+
+  renderBarterSummary();
+}
+function renderBarterSummary() {
+  const badge = document.getElementById('barterSelectedCountBadge');
+  const totalGrid = document.getElementById('barterMaterialSummaryGrid');
+  if (!badge || !totalGrid) return;
+  const state = getBarterState();
+  const selected = barterExchangeData.filter(entry => state[entry.id]);
+  badge.textContent = `${selected.length} 項`;
+  if (!selected.length) {
+    totalGrid.innerHTML = `<div class="barter-empty" style="grid-column:1/-1;">左邊勾選要兌換的項目，這裡只會顯示需要準備的材料總數。</div>`;
+    return;
+  }
+
+  const totals = new Map();
+  selected.forEach(entry => {
+    entry.materials.forEach(mat => {
+      const prev = totals.get(mat.name) || { qty:0, from:0 };
+      prev.qty += mat.qty * entry.totalTimes;
+      prev.from += 1;
+      totals.set(mat.name, prev);
+    });
+  });
+  const arr = [...totals.entries()].sort((a,b) => b[1].qty - a[1].qty || a[0].localeCompare(b[0], 'zh-Hant'));
+  totalGrid.innerHTML = arr.map(([name, info]) => `
+    <div class="barter-total-card">
+      <div class="barter-icon-wrap" style="width:44px;height:44px;flex:0 0 44px;">${itemIconTag(name)}</div>
+      <div class="barter-total-card-main">
+        <div class="barter-total-name">${esc(name)}</div>
+        <div class="barter-total-qty">× ${info.qty}</div>
+        <div class="barter-total-sub">由 ${info.from} 個勾選項目合計</div>
+      </div>
+    </div>`).join('');
+}
+
+function initTrainingView() {
+  renderTrainingRecipes();
+  updateTrainingSummary();
+  renderBarterChecklist();
+}
+
+document.getElementById("resetBarterChecklistBtn")?.addEventListener("click", () => {
+  localStorage.removeItem(BARTER_TRACK_KEY);
+  renderBarterChecklist();
+});
+
+document.getElementById("expandAllBarterAreasBtn")?.addEventListener("click", () => {
+  localStorage.removeItem(BARTER_AREA_COLLAPSE_KEY);
+  renderBarterChecklist();
+});
+document.getElementById("collapseAllBarterAreasBtn")?.addEventListener("click", () => {
+  const q = (document.getElementById("barterSearchInput")?.value || "").trim().toLowerCase();
+  const areas = [...new Set(barterExchangeData.filter(entry => !q || barterEntrySearchText(entry).includes(q)).map(entry => entry.location || "其他"))];
+  saveCollapsedBarterAreas(new Set(areas));
+  renderBarterChecklist();
+});
+
 // ==================== 頁面切換與全域事件綁定 ====================
 const tabWorkbenchBtn = document.getElementById("tabWorkbenchBtn");
 const tabFoodBtn = document.getElementById("tabFoodBtn");
+const tabTrainingBtn = document.getElementById("tabTrainingBtn");
 const viewWorkbench = document.getElementById("viewWorkbench");
 const viewFood = document.getElementById("viewFood");
+const viewTraining = document.getElementById("viewTraining");
 const membershipToggle = document.getElementById("membershipToggle");
 const membershipLabel = document.getElementById("membershipLabel");
 
 function switchView(viewName) {
-  if (viewName === "workbench") {
-    tabWorkbenchBtn.classList.add("active");
-    tabFoodBtn.classList.remove("active");
-    viewWorkbench.classList.add("active");
-    viewFood.classList.remove("active");
-  } else {
-    tabFoodBtn.classList.add("active");
-    tabWorkbenchBtn.classList.remove("active");
-    viewFood.classList.add("active");
-    viewWorkbench.classList.remove("active");
-    updateFoodCalculations();
-  }
+  tabWorkbenchBtn.classList.toggle("active", viewName === "workbench");
+  tabFoodBtn.classList.toggle("active", viewName === "food");
+  tabTrainingBtn.classList.toggle("active", viewName === "training");
+  viewWorkbench.classList.toggle("active", viewName === "workbench");
+  viewFood.classList.toggle("active", viewName === "food");
+  viewTraining.classList.toggle("active", viewName === "training");
+  membershipToggle.style.visibility = viewName === "food" || viewName === "workbench" || viewName === "training" ? "visible" : "visible";
+  if (viewName === "food") updateFoodCalculations();
+  if (viewName === "training") updateTrainingSummary();
 }
 
 tabWorkbenchBtn.addEventListener("click", () => switchView("workbench"));
 tabFoodBtn.addEventListener("click", () => switchView("food"));
+tabTrainingBtn.addEventListener("click", () => switchView("training"));
 
 membershipToggle.addEventListener("click", () => {
   hasMembership = !hasMembership;
@@ -2855,6 +3482,7 @@ membershipToggle.addEventListener("click", () => {
   membershipLabel.textContent = hasMembership ? "會員啟用" : "無會員 (時間x2)";
   updateWorkbenchCalculations();
   updateFoodCalculations();
+  updateTrainingSummary();
 });
 
 filterTabs.forEach(tab => {
@@ -2902,10 +3530,24 @@ foodSearchInput.addEventListener("input", (e) => {
   renderFoodAccordion();
 });
 
+const trainingAllCount = document.getElementById("trainingAllCount");
+const applyTrainingAllBtn = document.getElementById("applyTrainingAllBtn");
+const barterSearchInput = document.getElementById("barterSearchInput");
+if (applyTrainingAllBtn) {
+  applyTrainingAllBtn.addEventListener("click", () => {
+    const n = Math.max(0, Math.floor(Number(trainingAllCount.value) || 0));
+    trainingRecipes.forEach(r => r.count = n);
+    renderTrainingRecipes();
+    updateTrainingSummary();
+  });
+}
+if (barterSearchInput) barterSearchInput.addEventListener("input", renderBarterChecklist);
+
 // 初始化
 renderWorkbenchSidebar();
 updateWorkbenchCalculations();
 updateFoodCalculations();
+initTrainingView();
 </script>
 </body>
 </html>
