@@ -1681,27 +1681,30 @@ const processingGroups = [
     group:"金屬加工",
     recipes:[
       {name:"鐵錠",outputQty:3,materials:[{name:"鐵礦石",qty:10}],timeSeconds:30},
-      {name:"鋼錠",outputQty:3,materials:[{name:"鐵錠",qty:3},{name:"煤炭",qty:4}],timeSeconds:330},
-      {name:"合金鋼錠",outputQty:3,materials:[{name:"鋼錠",qty:3},{name:"銅礦石",qty:15},{name:"煤炭",qty:8}],timeSeconds:6000},
-      {name:"特殊鋼錠",outputQty:3,materials:[{name:"合金鋼錠",qty:4},{name:"白銅礦石",qty:20},{name:"煤炭",qty:12}],timeSeconds:18000}
+      {name:"鋼錠",outputQty:3,materials:[{name:"鐵錠",qty:3},{name:"煤炭",qty:4}],timeSeconds:300},
+      {name:"合金鋼錠",outputQty:3,materials:[{name:"鋼錠",qty:3},{name:"銅礦石",qty:15},{name:"煤炭",qty:8}],timeSeconds:4800},
+      {name:"特殊鋼錠",outputQty:3,materials:[{name:"合金鋼錠",qty:4},{name:"白銅礦石",qty:20},{name:"煤炭",qty:12}],timeSeconds:14400},
+      {name:"銀合金錠",outputQty:3,materials:[{name:"特殊鋼錠",qty:5},{name:"銀礦石",qty:20},{name:"煤炭",qty:16}],timeSeconds:18000}
     ]
   },
   {
     group:"木材加工",
     recipes:[
       {name:"木材",outputQty:3,materials:[{name:"原木",qty:10}],timeSeconds:45},
-      {name:"木材+",outputQty:3,materials:[{name:"木材",qty:3},{name:"樹液",qty:4}],timeSeconds:390},
-      {name:"高級木材",outputQty:3,materials:[{name:"木材+",qty:3},{name:"高級原木",qty:15},{name:"樹液",qty:8}],timeSeconds:6000},
-      {name:"高級木材+",outputQty:3,materials:[{name:"高級木材",qty:4},{name:"高級原木+",qty:20},{name:"樹液",qty:12}],timeSeconds:18000}
+      {name:"木材+",outputQty:3,materials:[{name:"木材",qty:3},{name:"樹液",qty:4}],timeSeconds:360},
+      {name:"高級木材",outputQty:3,materials:[{name:"木材+",qty:3},{name:"高級原木",qty:15},{name:"樹液",qty:8}],timeSeconds:4800},
+      {name:"高級木材+",outputQty:3,materials:[{name:"高級木材",qty:4},{name:"高級原木+",qty:20},{name:"樹液",qty:12}],timeSeconds:14400},
+      {name:"最高級木材",outputQty:3,materials:[{name:"高級木材+",qty:5},{name:"最高級原木",qty:20},{name:"樹液",qty:16}],timeSeconds:18000}
     ]
   },
   {
     group:"皮革加工",
     recipes:[
       {name:"皮革",outputQty:3,materials:[{name:"生皮",qty:10}],timeSeconds:30},
-      {name:"皮革+",outputQty:3,materials:[{name:"皮革",qty:3},{name:"單寧粉末",qty:4}],timeSeconds:330},
-      {name:"高級皮革",outputQty:3,materials:[{name:"皮革+",qty:3},{name:"高級生皮",qty:15},{name:"單寧粉末",qty:8}],timeSeconds:6000},
-      {name:"高級皮革+",outputQty:3,materials:[{name:"高級皮革",qty:4},{name:"高級生皮+",qty:20},{name:"單寧粉末",qty:12}],timeSeconds:18000}
+      {name:"皮革+",outputQty:3,materials:[{name:"皮革",qty:3},{name:"單寧粉末",qty:4}],timeSeconds:300},
+      {name:"高級皮革",outputQty:3,materials:[{name:"皮革+",qty:3},{name:"高級生皮",qty:15},{name:"單寧粉末",qty:8}],timeSeconds:4800},
+      {name:"高級皮革+",outputQty:3,materials:[{name:"高級皮革",qty:4},{name:"高級生皮+",qty:20},{name:"單寧粉末",qty:12}],timeSeconds:14400},
+      {name:"最高級皮革",outputQty:3,materials:[{name:"高級皮革+",qty:5},{name:"最高級生皮",qty:20},{name:"單寧粉末",qty:16}],timeSeconds:18000}
     ]
   },
   {
@@ -1709,10 +1712,12 @@ const processingGroups = [
     recipes:[
       {name:"布料",outputQty:3,materials:[{name:"羊毛",qty:10}],timeSeconds:45},
       {name:"絲綢",outputQty:2,materials:[{name:"蜘蛛網",qty:10}],timeSeconds:90},
-      {name:"布料+",outputQty:3,materials:[{name:"布料",qty:3},{name:"羊毛",qty:4}],timeSeconds:390},
-      {name:"高級布料",outputQty:3,materials:[{name:"布料+",qty:3},{name:"高級羊毛",qty:15},{name:"羊毛",qty:8}],timeSeconds:6000},
-      {name:"高級絲綢",outputQty:2,materials:[{name:"絲綢",qty:4},{name:"壯壯蘑菇汁液",qty:8}],timeSeconds:8550},
-      {name:"高級布料+",outputQty:3,materials:[{name:"高級布料",qty:4},{name:"高級羊毛+",qty:20},{name:"羊毛",qty:12}],timeSeconds:18000}
+      {name:"布料+",outputQty:3,materials:[{name:"布料",qty:3},{name:"羊毛",qty:4}],timeSeconds:360},
+      {name:"高級布料",outputQty:3,materials:[{name:"布料+",qty:3},{name:"高級羊毛",qty:15},{name:"羊毛",qty:8}],timeSeconds:4800},
+      {name:"高級絲綢",outputQty:2,materials:[{name:"絲綢",qty:4},{name:"壯壯蘑菇汁液",qty:8}],timeSeconds:6600},
+      {name:"高級布料+",outputQty:3,materials:[{name:"高級布料",qty:4},{name:"高級羊毛+",qty:20},{name:"羊毛",qty:12}],timeSeconds:14400},
+      {name:"最高級布料",outputQty:3,materials:[{name:"高級布料+",qty:5},{name:"最高級羊毛",qty:20},{name:"羊毛",qty:16}],timeSeconds:18000},
+      {name:"最高級絲綢",outputQty:2,materials:[{name:"高級絲綢",qty:4},{name:"最高級蜘蛛網",qty:20},{name:"壯壯蘑菇汁液",qty:16}],timeSeconds:21600}
     ]
   },
   {
@@ -1730,7 +1735,15 @@ const processingGroups = [
       {name:"躲躲花粉末",outputQty:5,materials:[{name:"躲躲花",qty:20}],timeSeconds:900},
       {name:"火苗結晶",outputQty:3,materials:[{name:"夕陽蝴蝶",qty:3},{name:"魔力藥草",qty:10},{name:"黏土",qty:3}],timeSeconds:600},
       {name:"冰霜結晶",outputQty:3,materials:[{name:"白霜金龜子",qty:3},{name:"魔力藥草",qty:10},{name:"黏土",qty:3}],timeSeconds:600},
-      {name:"光輝結晶",outputQty:3,materials:[{name:"幽靈螢火蟲",qty:3},{name:"魔力藥草",qty:10},{name:"黏土",qty:3}],timeSeconds:600}
+      {name:"光輝結晶",outputQty:3,materials:[{name:"幽靈螢火蟲",qty:3},{name:"魔力藥草",qty:10},{name:"黏土",qty:3}],timeSeconds:600},
+      {name:"魔力起爆劑",outputQty:10,materials:[{name:"蘊含魔力的石頭",qty:50},{name:"魔力藥草",qty:50},{name:"閃閃發亮的苔蘚",qty:25}],timeSeconds:4650},
+      {name:"封印的憤怒碎片",outputQty:1,materials:[{name:"憤怒的碎片",qty:10},{name:"紙",qty:10},{name:"封印結晶",qty:5}],timeSeconds:4650},
+      {name:"封印的遺忘碎片",outputQty:1,materials:[{name:"遺忘的碎片",qty:10},{name:"紙",qty:10},{name:"封印結晶",qty:5}],timeSeconds:4650},
+      {name:"封印的野性碎片",outputQty:1,materials:[{name:"野性的碎片",qty:10},{name:"紙",qty:10},{name:"封印結晶",qty:5}],timeSeconds:4650},
+      {name:"傷痕花粉末",outputQty:5,materials:[{name:"傷痕花",qty:20}],timeSeconds:1500},
+      {name:"增幅蘑菇孢子",outputQty:15,materials:[{name:"增幅蘑菇",qty:30},{name:"紙",qty:3}],timeSeconds:1800},
+      {name:"增幅蘑菇汁液",outputQty:5,materials:[{name:"增幅蘑菇孢子",qty:10},{name:"咻咻蘑菇汁液",qty:10}],timeSeconds:5400},
+      {name:"電氣結晶",outputQty:3,materials:[{name:"蒼葉蟻",qty:3},{name:"魔力藥草",qty:10},{name:"黏土",qty:3}],timeSeconds:600}
     ]
   },
   {
@@ -1740,7 +1753,11 @@ const processingGroups = [
       {name:"麵粉",outputQty:3,materials:[{name:"小麥",qty:15}],timeSeconds:600},
       {name:"起司",outputQty:3,materials:[{name:"牛奶",qty:6},{name:"鹽",qty:1}],timeSeconds:600},
       {name:"麵",outputQty:3,materials:[{name:"麵粉",qty:3},{name:"雞蛋",qty:5},{name:"裝水的瓶子",qty:1}],timeSeconds:1500},
-      {name:"鮮奶油",outputQty:3,materials:[{name:"牛奶",qty:12},{name:"雞蛋",qty:6},{name:"糖",qty:2}],timeSeconds:1500}
+      {name:"鮮奶油",outputQty:3,materials:[{name:"牛奶",qty:12},{name:"雞蛋",qty:6},{name:"糖",qty:2}],timeSeconds:1500},
+      {name:"泡水的豆子",outputQty:5,materials:[{name:"黃豆",qty:30},{name:"裝水的瓶子",qty:3}],timeSeconds:1200},
+      {name:"豆腐",outputQty:3,materials:[{name:"泡水的豆子",qty:3},{name:"裝水的瓶子",qty:3},{name:"鹽",qty:2},{name:"布料",qty:3}],timeSeconds:3300},
+      {name:"豆乳",outputQty:3,materials:[{name:"泡水的豆子",qty:3},{name:"裝水的瓶子",qty:3},{name:"鹽",qty:1},{name:"食用油",qty:1}],timeSeconds:3300},
+      {name:"熟成的大塊肉",outputQty:1,materials:[{name:"大塊肉",qty:1},{name:"藥草",qty:6},{name:"大蒜",qty:2},{name:"鹽",qty:2},{name:"胡椒",qty:1}],timeSeconds:9000}
     ]
   }
 ];
